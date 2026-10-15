@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoLoop — Smart E-Waste Management Platform ♻️</title>
+  <meta name="description" content="EcoLoop helps you manage electronic waste responsibly. Register, track, and recycle your old devices to support a circular economy." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-icon">♻️</div>
+        EcoLoop
+      </a>
+      <div class="navbar-menu" id="navMenu">
+        <a href="index.html" class="active">Home</a>
+        <a href="pages/collection.html">Collect</a>
+        <a href="pages/segregation.html">Segregate</a>
+        <a href="pages/dashboard.html">Dashboard</a>
+        <a href="pages/tracking.html">Tracking</a>
+        <a href="pages/recycling.html">Recycling</a>
+        <a href="pages/analytics.html">Analytics</a>
+        <a href="pages/awareness.html">Awareness</a>
+        <a href="pages/admin.html">Admin</a>
+        <a href="pages/about.html">About</a>
+        <a href="pages/collection.html" class="navbar-cta">♻️ Recycle Now</a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <span class="section-badge">🌍 Smart E-Waste Management</span>
+          <h1>Give Your E-Waste a <span class="text-gradient">Second Life</span></h1>
+          <p>Don't let your old electronics end up in landfills. EcoLoop makes it easy to register, track, and responsibly recycle your electronic waste — supporting the circular economy and a greener planet.</p>
+          <div class="hero-buttons">
+            <a href="pages/collection.html" class="btn btn-primary btn-lg">♻️ Recycle Now</a>
+            <a href="#impact" class="btn btn-secondary btn-lg">📊 Explore Our Impact</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat-item">
+              <h3 id="stat-devices">0+</h3>
+              <p>Devices Registered</p>
+            </div>
+            <div class="hero-stat-item">
+              <h3 id="stat-weight">0 kg</h3>
+              <p>E-Waste Collected</p>
+            </div>
+            <div class="hero-stat-item">
+              <h3 id="stat-requests">0</h3>
+              <p>Recycling Requests</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div style="width:100%; max-width:460px; aspect-ratio:4/3; background: linear-gradient(135deg, #DCFCE7, #BBF7D0); border-radius: 24px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 40px; box-shadow: 0 20px 40px rgba(22,163,74,0.15); position:relative; overflow:hidden;">
+            <div style="position:absolute; top:-30px; right:-30px; width:120px; height:120px; background:rgba(22,163,74,0.1); border-radius:50%;"></div>
+            <div style="position:absolute; bottom:-20px; left:-20px; width:80px; height:80px; background:rgba(22,163,74,0.08); border-radius:50%;"></div>
+            <div style="font-size: 5rem; margin-bottom: 16px;">♻️</div>
+            <div style="display:flex; gap:20px; font-size:2.5rem; margin-bottom:16px;">
+              <span>💻</span><span>📱</span><span>🔌</span><span>🖨️</span>
+            </div>
+            <div style="display:flex; gap:16px; font-size:1.8rem;">
+              <span>⌨️</span><span>🔋</span><span>🔧</span><span>🖥️</span>
+            </div>
+            <p style="margin-top:20px; color:#166534; font-weight:700; font-size:1.1rem; text-align:center;">Collect → Segregate → Recycle → Recover</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">📋 How It Works</span>
+        <h2>Four Simple Steps to Responsible E-Waste Management</h2>
+        <p>EcoLoop guides you through the entire lifecycle of electronic waste — from collection to material recovery.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card animate-on-scroll delay-1">
+          <div class="step-number">1</div>
+          <div class="step-icon">📦</div>
+          <h4>Collect</h4>
+          <p>Register your old or unused electronic devices through our simple collection form.</p>
+        </div>
+        <div class="step-card animate-on-scroll delay-2">
+          <div class="step-number">2</div>
+          <div class="step-icon">🔍</div>
+          <h4>Segregate</h4>
+          <p>Our smart classification system categorizes your e-waste for proper handling.</p>
+        </div>
+        <div class="step-card animate-on-scroll delay-3">
+          <div class="step-number">3</div>
+          <div class="step-icon">♻️</div>
+          <h4>Recycle</h4>
+          <p>E-waste is safely dismantled, with reusable parts repaired and materials separated.</p>
+        </div>
+        <div class="step-card animate-on-scroll delay-4">
+          <div class="step-number">4</div>
+          <div class="step-icon">💎</div>
+          <h4>Recover</h4>
+          <p>Valuable materials like copper, aluminium, and gold are recovered for reuse.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" style="background: var(--green-50);" id="categories">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">📂 Accepted Categories</span>
+        <h2>We Accept All Types of Electronic Waste</h2>
+        <p>From laptops to batteries — register any old electronic device for responsible recycling.</p>
+      </div>
+      <div class="categories-grid">
+        <div class="category-card animate-on-scroll">
+          <div class="cat-icon">💻</div>
+          <h5>Computers & Laptops</h5>
+          <p>Desktops, laptops, monitors</p>
+        </div>
+        <div class="category-card animate-on-scroll">
+          <div class="cat-icon">📱</div>
+          <h5>Mobile Phones & Tablets</h5>
+          <p>Smartphones, tablets, e-readers</p>
+        </div>
+        <div class="category-card animate-on-scroll">
+          <div class="cat-icon">🔌</div>
+          <h5>Chargers & Cables</h5>
+          <p>Power adapters, USB cables</p>
+        </div>
+        <div class="category-card animate-on-scroll">
+          <div class="cat-icon">🖨️</div>
+          <h5>Printers & Scanners</h5>
+          <p>Inkjet, laser printers, scanners</p>
+        </div>
+        <div class="category-card animate-on-scroll">
+          <div class="cat-icon">⌨️</div>
+          <h5>Keyboards & Peripherals</h5>
+          <p>Keyboards, mice, webcams</p>
+        </div>
+        <div class="category-card animate-on-scroll">
+          <div class="cat-icon">🔧</div>
+          <h5>Circuit Boards</h5>
+          <p>PCBs, RAM, processors</p>
+        </div>
+        <div class="category-card animate-on-scroll">
+          <div class="cat-icon">🔋</div>
+          <h5>Batteries & Others</h5>
+          <p>Batteries, UPS, misc electronics</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section class="section" id="benefits">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">🌱 Why Recycle E-Waste</span>
+        <h2>Benefits of Responsible E-Waste Management</h2>
+        <p>Every device you recycle responsibly makes a positive impact on the environment and economy.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card animate-on-scroll">
+          <div class="benefit-icon">🌍</div>
+          <div>
+            <h4>Protect the Environment</h4>
+            <p>Prevent toxic substances like lead, mercury, and cadmium from contaminating soil and water.</p>
+          </div>
+        </div>
+        <div class="benefit-card animate-on-scroll">
+          <div class="benefit-icon">💰</div>
+          <div>
+            <h4>Recover Valuable Materials</h4>
+            <p>Recover copper, aluminium, gold, and other valuable metals from discarded electronics.</p>
+          </div>
+        </div>
+        <div class="benefit-card animate-on-scroll">
+          <div class="benefit-icon">🔄</div>
+          <div>
+            <h4>Support Circular Economy</h4>
+            <p>Keep materials in use longer — reduce mining, save energy, and create new products.</p>
+          </div>
+        </div>
+        <div class="benefit-card animate-on-scroll">
+          <div class="benefit-icon">⚡</div>
+          <div>
+            <h4>Save Energy</h4>
+            <p>Recycling metals from e-waste uses significantly less energy than mining new raw materials.</p>
+          </div>
+        </div>
+        <div class="benefit-card animate-on-scroll">
+          <div class="benefit-icon">🏥</div>
+          <div>
+            <h4>Protect Public Health</h4>
+            <p>Safe disposal prevents exposure to hazardous chemicals found in electronic components.</p>
+          </div>
+        </div>
+        <div class="benefit-card animate-on-scroll">
+          <div class="benefit-icon">📉</div>
+          <div>
+            <h4>Reduce Landfill Burden</h4>
+            <p>E-waste is the fastest growing waste stream. Recycling keeps it out of overflowing landfills.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="section" style="background: var(--green-50);" id="impact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-badge">📊 Impact of Your Contribution</span>
+        <h2>Together, We're Making a Difference</h2>
+        <p>Real-time data from all registered collection requests on the EcoLoop platform.</p>
+      </div>
+      <div class="stats-grid" id="impact-stats">
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon green">📦</div>
+          <div class="stat-info">
+            <h3 id="impact-total">0</h3>
+            <p>Total Requests</p>
+          </div>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon blue">⚖️</div>
+          <div class="stat-info">
+            <h3 id="impact-weight">0 kg</h3>
+            <p>Registered E-Waste</p>
+          </div>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon amber">♻️</div>
+          <div class="stat-info">
+            <h3 id="impact-recycled">0</h3>
+            <p>Successfully Recycled</p>
+          </div>
+        </div>
+        <div class="stat-card animate-on-scroll">
+          <div class="stat-icon green">💰</div>
+          <div class="stat-info">
+            <h3 id="impact-value">₹0</h3>
+            <p>Estimated Value*</p>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center; font-size:0.82rem; color:var(--text-muted); margin-top: var(--space-lg);">* Estimated economic value is based on configurable material recovery rate assumptions and is for illustration only. Actual value depends on device condition, contamination, and recycler pricing.</p>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Give Your Electronics a Second Life?</h2>
+      <p>Register your unused electronic devices today and contribute to a cleaner, greener future.</p>
+      <a href="pages/collection.html" class="btn btn-primary btn-lg">♻️ Register E-Waste Now</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>♻️ EcoLoop</h3>
+          <p>Smart E-Waste Management Platform — Encouraging responsible electronic waste collection, segregation, recycling, and resource recovery to support a circular economy.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="pages/collection.html">Register E-Waste</a>
+          <a href="pages/dashboard.html">Dashboard</a>
+          <a href="pages/tracking.html">Track Collection</a>
+          <a href="pages/analytics.html">Impact Analytics</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="pages/recycling.html">Recycling Guide</a>
+          <a href="pages/segregation.html">Segregation Guide</a>
+          <a href="pages/awareness.html">Safety Information</a>
+          <a href="pages/about.html">About Project</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <a href="pages/about.html#contact">Contact Us</a>
+          <a href="pages/about.html#team">Team</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EcoLoop — FA-2 College Project on E-Waste Management</p>
+        <p>Built with ❤️ for a Sustainable Future</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Update stats on home page from actual data
+    document.addEventListener('DOMContentLoaded', () => {
+      const stats = EcoStorage.getStats();
+      document.getElementById('stat-devices').textContent = stats.totalRequests + '+';
+      document.getElementById('stat-weight').textContent = stats.totalWeight.toFixed(1) + ' kg';
+      document.getElementById('stat-requests').textContent = stats.totalRequests;
+
+      document.getElementById('impact-total').textContent = stats.totalRequests;
+      document.getElementById('impact-weight').textContent = stats.totalWeight.toFixed(1) + ' kg';
+      document.getElementById('impact-recycled').textContent = stats.recycledCount;
+      document.getElementById('impact-value').textContent = '₹' + calculateTotalEconomicValue().toLocaleString('en-IN');
+    });
+  </script>
+</body>
+</html>

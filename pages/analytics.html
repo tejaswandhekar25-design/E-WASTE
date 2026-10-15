@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impact Analytics — EcoLoop ♻️</title>
+  <meta name="description" content="Visual analytics and empirical charts showing collection growth, material breakdown, status distributions, and recovered economic value." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-brand">
+        <div class="logo-icon">♻️</div>
+        EcoLoop
+      </a>
+      <div class="navbar-menu" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="collection.html">Collect</a>
+        <a href="segregation.html">Segregate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="tracking.html">Tracking</a>
+        <a href="recycling.html">Recycling</a>
+        <a href="analytics.html" class="active">Analytics</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="admin.html">Admin</a>
+        <a href="about.html">About</a>
+        <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Impact Analytics</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--space-md);">
+        <div>
+          <h1>📈 E-Waste Impact & Sustainability Analytics</h1>
+          <p>Empirical metrics and visualizations tracking electronic waste diversion, recovery trends, and circular economics.</p>
+        </div>
+        <div style="display:flex; gap:var(--space-sm);">
+          <button class="btn btn-secondary btn-sm" onclick="reloadAnalytics()">🔄 Refresh Data</button>
+          <button class="btn btn-primary btn-sm" onclick="EcoStorage.downloadCSV()">📥 Download Dataset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container">
+
+      <!-- KPI Summary Cards -->
+      <div class="stats-grid" style="margin-bottom: var(--space-2xl);">
+        <div class="stat-card">
+          <div class="stat-icon green">⚖️</div>
+          <div class="stat-info">
+            <h3 id="ana-total-weight">0 kg</h3>
+            <p>Total E-Waste Diverted</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue">📦</div>
+          <div class="stat-info">
+            <h3 id="ana-total-requests">0</h3>
+            <p>Total Collection Requests</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon amber">🏆</div>
+          <div class="stat-info">
+            <h3 id="ana-top-category" style="font-size:1.3rem;">-</h3>
+            <p>Top Contributed Stream</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green">💰</div>
+          <div class="stat-info">
+            <h3 id="ana-economic-value">₹0</h3>
+            <p>Est. Economic Recovery*</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclosed Methodology Banner -->
+      <div style="background:var(--white); border-left: 4px solid var(--blue-500); padding: 12px 16px; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: var(--space-xl); border: 1px solid var(--border);">
+        <strong>🔬 Methodology & Disclosures:</strong> Analytics are computed in real time from live records in <code>EcoStorage</code>. Economic valuation uses benchmarked multi-metal recovery coefficients (UNEP 2024 / StEP Initiative) applied to user-registered device weights. Estimates do not guarantee commercial transaction prices.
+      </div>
+
+      <!-- Filters Bar -->
+      <div class="filters-bar" style="margin-bottom: var(--space-2xl);">
+        <label style="font-weight:600; font-size:0.88rem; color:var(--text-secondary);">Filter Stream:</label>
+        <select id="ana-category-filter" class="form-control" style="width: auto; min-width: 200px;">
+          <option value="ALL">All Device Categories</option>
+          <option value="Computers & Laptops">💻 Computers & Laptops</option>
+          <option value="Mobile Phones & Tablets">📱 Mobile Phones & Tablets</option>
+          <option value="Chargers & Cables">🔌 Chargers & Cables</option>
+          <option value="Printers & Scanners">🖨️ Printers & Scanners</option>
+          <option value="Keyboards, Mice & Peripherals">⌨️ Peripherals</option>
+          <option value="Circuit Boards & Components">🔧 Circuit Boards</option>
+          <option value="Batteries & Others">🔋 Batteries & Others</option>
+        </select>
+        <span style="font-size:0.85rem; color:var(--text-muted); margin-left:auto;">All charts dynamically respond to filter selection.</span>
+      </div>
+
+      <!-- Empty State Container (if storage has 0 records) -->
+      <div id="ana-empty-state" class="empty-state card-flat" style="display:none; margin-bottom: var(--space-2xl);">
+        <div class="empty-icon">📊</div>
+        <h3>No Collection Data Available for Analytics</h3>
+        <p>There are currently no active collection requests recorded. Load demo data or register devices to see live visual charts.</p>
+        <button class="btn btn-primary" onclick="EcoStorage.loadDemoData(); location.reload();">⚡ Load Demo Dataset</button>
+      </div>
+
+      <!-- Charts Grid -->
+      <div id="ana-charts-grid" class="charts-grid" style="margin-bottom: var(--space-3xl);">
+        
+        <!-- Chart 1: Category Breakdown (Doughnut) -->
+        <div class="chart-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+            <h4>1. E-Waste Collected by Category (Weight kg)</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Doughnut Distribution</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-categories"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 2: Monthly Trends (Bar) -->
+        <div class="chart-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+            <h4>2. Monthly Registered E-Waste (kg)</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Temporal Inflow</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-monthly"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 3: Status Distribution (Pie) -->
+        <div class="chart-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+            <h4>3. Collection Lifecycle Status Distribution</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Pipeline Status</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-status"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 4: Cumulative Collection Growth (Line/Area) -->
+        <div class="chart-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+            <h4>4. Cumulative Diversion Growth Curve</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Total kg Over Time</span>
+          </div>
+          <div class="chart-container">
+            <canvas id="chart-growth"></canvas>
+          </div>
+        </div>
+
+        <!-- Chart 5: Potential Economic Recovery Value by Material (Horizontal Bar) -->
+        <div class="chart-card" style="grid-column: 1 / -1;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+            <h4>5. Estimated Secondary Market Value of Recovered Resources (INR ₹)</h4>
+            <span style="font-size:0.75rem; color:var(--text-muted);">Recovered Resource Economics</span>
+          </div>
+          <div class="chart-container" style="height: 320px;">
+            <canvas id="chart-economics"></canvas>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>♻️ EcoLoop</h3>
+          <p>Smart E-Waste Management Platform — Scientific data visualization for college Formative Assessment (FA-2).</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="collection.html">Register E-Waste</a>
+          <a href="dashboard.html">User Dashboard</a>
+          <a href="tracking.html">Track Status</a>
+        </div>
+        <div class="footer-links">
+          <h4>Modules</h4>
+          <a href="recycling.html">Urban Mining</a>
+          <a href="analytics.html">Impact Analytics</a>
+          <a href="awareness.html">Safety Guide</a>
+          <a href="admin.html">Admin Panel</a>
+        </div>
+        <div class="footer-links">
+          <h4>Academic Project</h4>
+          <a href="about.html">Project Details</a>
+          <a href="about.html#team">Team Members</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EcoLoop — College FA-2 E-Waste Management</p>
+        <p>Built with ❤️ for a Circular Economy</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/analytics.js"></script>
+</body>
+</html>

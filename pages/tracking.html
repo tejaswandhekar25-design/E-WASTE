@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Request — EcoLoop ♻️</title>
+  <meta name="description" content="Track your electronic waste collection and recycling status in real time through the EcoLoop simulated tracking lifecycle." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-brand">
+        <div class="logo-icon">♻️</div>
+        EcoLoop
+      </a>
+      <div class="navbar-menu" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="collection.html">Collect</a>
+        <a href="segregation.html">Segregate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="tracking.html" class="active">Tracking</a>
+        <a href="recycling.html">Recycling</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="admin.html">Admin</a>
+        <a href="about.html">About</a>
+        <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Tracking</span>
+      </div>
+      <h1>📍 E-Waste Collection & Lifecycle Tracker</h1>
+      <p>Follow the complete chain of custody for your registered electronic waste — from initial pickup to final certified material recovery.</p>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container" style="max-width: 900px;">
+
+      <!-- Prototype Notice Banner -->
+      <div class="prototype-banner">
+        <span>🧪</span>
+        <div>
+          <strong>College Assessment Prototype:</strong> Tracking statuses and milestone timestamps are simulated through client-side state transitions to model actual ERP/logistics chain-of-custody.
+        </div>
+      </div>
+
+      <!-- Search Box Card -->
+      <div class="card-flat" style="margin-bottom: var(--space-xl);">
+        <h3 style="margin-bottom: var(--space-xs);">🔍 Track Your Request</h3>
+        <p style="margin-bottom: var(--space-md); font-size: 0.92rem;">Enter your unique EcoLoop Request ID (e.g. <code>ECO-20261001-DM01</code>) or select from recent submissions:</p>
+
+        <div style="display:flex; gap: var(--space-sm); flex-wrap:wrap; margin-bottom: var(--space-md);">
+          <input type="text" id="track-id-input" class="form-control" placeholder="Enter Request ID..." style="flex:1; min-width: 240px; text-transform: uppercase;" />
+          <button id="btn-track" class="btn btn-primary">Track Status ➔</button>
+        </div>
+
+        <div style="font-size: 0.85rem; color: var(--text-muted); display:flex; align-items:center; gap: 8px; flex-wrap:wrap;">
+          <span>Recent Requests:</span>
+          <div id="quick-track-list" style="display:inline-flex; gap:6px; flex-wrap:wrap;">
+            <!-- Populated via tracking.js -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Tracking Results Display Area -->
+      <div id="tracking-card" class="card-flat" style="display:none; border-top: 4px solid var(--green-600);">
+        <!-- Summary Header -->
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:var(--space-md); padding-bottom:var(--space-md); border-bottom:1px solid var(--border);">
+          <div>
+            <span style="font-size:0.8rem; color:var(--text-muted);">Request Identification</span>
+            <h2 id="track-result-id" style="color:var(--green-800); font-size:1.5rem; margin:2px 0;">ECO-XXXX</h2>
+            <div id="track-result-meta" style="font-size:0.9rem; color:var(--text-secondary);"></div>
+          </div>
+          <div style="text-align:right;">
+            <div id="track-result-badge"></div>
+            <div id="track-result-date" style="font-size:0.8rem; color:var(--text-muted); margin-top:4px;"></div>
+          </div>
+        </div>
+
+        <!-- Visual Progress Bar -->
+        <div style="margin: var(--space-2xl) 0 var(--space-xl);">
+          <h4 style="margin-bottom: var(--space-lg); text-align:center; color: var(--text-secondary); font-size:0.95rem; text-transform:uppercase; letter-spacing:0.5px;">Chain-of-Custody Lifecycle</h4>
+          <div class="progress-tracker" id="lifecycle-tracker">
+            <div class="progress-step" id="step-1">
+              <div class="progress-dot">1</div>
+              <div class="progress-label">Pending</div>
+            </div>
+            <div class="progress-step" id="step-2">
+              <div class="progress-dot">2</div>
+              <div class="progress-label">Scheduled</div>
+            </div>
+            <div class="progress-step" id="step-3">
+              <div class="progress-dot">3</div>
+              <div class="progress-label">Collected</div>
+            </div>
+            <div class="progress-step" id="step-4">
+              <div class="progress-dot">4</div>
+              <div class="progress-label">Sent to Recycler</div>
+            </div>
+            <div class="progress-step" id="step-5">
+              <div class="progress-dot">5</div>
+              <div class="progress-label">Recycled</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Device Info Grid -->
+        <div class="result-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom: var(--space-xl);">
+          <div class="result-item" style="background:var(--gray-50); text-align:left; border:1px solid var(--border);">
+            <div style="font-size:0.8rem; color:var(--text-muted);">Device Name</div>
+            <div id="track-device-name" style="font-weight:700; color:var(--text-primary); margin-top:2px;"></div>
+          </div>
+          <div class="result-item" style="background:var(--gray-50); text-align:left; border:1px solid var(--border);">
+            <div style="font-size:0.8rem; color:var(--text-muted);">Category & Qty</div>
+            <div id="track-category-qty" style="font-weight:700; color:var(--text-primary); margin-top:2px;"></div>
+          </div>
+          <div class="result-item" style="background:var(--gray-50); text-align:left; border:1px solid var(--border);">
+            <div style="font-size:0.8rem; color:var(--text-muted);">Registered Weight</div>
+            <div id="track-weight" style="font-weight:700; color:var(--green-700); margin-top:2px;"></div>
+          </div>
+          <div class="result-item" style="background:var(--gray-50); text-align:left; border:1px solid var(--border);">
+            <div style="font-size:0.8rem; color:var(--text-muted);">Collection Mode</div>
+            <div id="track-method" style="font-weight:700; color:var(--text-primary); margin-top:2px;"></div>
+          </div>
+        </div>
+
+        <!-- Simulated Event Log -->
+        <div style="background:var(--white); border:1px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-lg);">
+          <h4 style="margin-bottom:var(--space-md); font-size:1rem; display:flex; align-items:center; gap:8px;">
+            <span>📜</span> Detailed Activity Log
+          </h4>
+          <div id="track-events-container" style="display:flex; flex-direction:column; gap:12px;">
+            <!-- Injected by tracking.js -->
+          </div>
+        </div>
+
+        <!-- Quick Demo Stage Simulator for Examiner/Viva -->
+        <div style="margin-top:var(--space-xl); padding:var(--space-md); background:var(--green-50); border-radius:var(--radius-md); border:1px dashed var(--green-400);">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+            <div>
+              <strong style="font-size:0.88rem; color:var(--green-900);">⚡ Examiner Demonstration Control:</strong>
+              <span style="font-size:0.82rem; color:var(--green-700); display:block;">Simulate stage progression for this request in real-time:</span>
+            </div>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              <button class="btn btn-outline btn-sm" onclick="advanceStage('Pending')">1. Pending</button>
+              <button class="btn btn-outline btn-sm" onclick="advanceStage('Scheduled')">2. Scheduled</button>
+              <button class="btn btn-outline btn-sm" onclick="advanceStage('Collected')">3. Collected</button>
+              <button class="btn btn-outline btn-sm" onclick="advanceStage('Sent to Recycler')">4. Sent</button>
+              <button class="btn btn-primary btn-sm" onclick="advanceStage('Recycled')">5. Recycled</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Not Found State -->
+      <div id="tracking-not-found" class="empty-state" style="display:none;">
+        <div class="empty-icon">🔎</div>
+        <h3>Request ID Not Found</h3>
+        <p>No e-waste collection request was found matching that ID. Please check the spelling or view all active requests on the dashboard.</p>
+        <a href="dashboard.html" class="btn btn-secondary btn-sm">Go to Dashboard</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>♻️ EcoLoop</h3>
+          <p>Smart E-Waste Management Platform — Supporting circular supply chains and verified electronic resource recovery.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="collection.html">Register E-Waste</a>
+          <a href="dashboard.html">User Dashboard</a>
+          <a href="tracking.html">Track Status</a>
+        </div>
+        <div class="footer-links">
+          <h4>Modules</h4>
+          <a href="recycling.html">Urban Mining</a>
+          <a href="analytics.html">Impact Analytics</a>
+          <a href="awareness.html">Safety Guide</a>
+          <a href="admin.html">Admin Panel</a>
+        </div>
+        <div class="footer-links">
+          <h4>Academic Project</h4>
+          <a href="about.html">Project Details</a>
+          <a href="about.html#team">Team Members</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EcoLoop — College FA-2 E-Waste Management</p>
+        <p>Built with ❤️ for a Circular Economy</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/tracking.js"></script>
+</body>
+</html>

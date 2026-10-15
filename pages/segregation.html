@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Segregation — EcoLoop ♻️</title>
+  <meta name="description" content="Classify and segregate your electronic waste into reusable, repairable, recyclable, and hazardous components for sustainable recovery." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-brand">
+        <div class="logo-icon">♻️</div>
+        EcoLoop
+      </a>
+      <div class="navbar-menu" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="collection.html">Collect</a>
+        <a href="segregation.html" class="active">Segregate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="tracking.html">Tracking</a>
+        <a href="recycling.html">Recycling</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="admin.html">Admin</a>
+        <a href="about.html">About</a>
+        <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Smart Segregation</span>
+      </div>
+      <h1>🧠 Smart E-Waste Segregation</h1>
+      <p>Proper segregation at source is the most critical step in e-waste management. Classify your electronics to identify reusable parts, hazardous elements, and recoverable precious metals.</p>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container">
+      
+      <!-- Interactive Classifier Wizard -->
+      <div class="card-flat" style="margin-bottom: var(--space-2xl); border-top: 4px solid var(--green-600);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-md); margin-bottom:var(--space-lg);">
+          <div>
+            <span class="section-badge">⚙️ Interactive Classifier</span>
+            <h2 style="font-size: 1.5rem; margin-top: 4px;">Smart Device Assessment Wizard</h2>
+            <p style="font-size: 0.92rem; color: var(--text-secondary);">Select your electronic device and current status to receive customized segregation and disposal pathways.</p>
+          </div>
+          <div style="font-size: 0.8rem; background: var(--green-50); color: var(--green-800); padding: 6px 12px; border-radius: var(--radius-full); font-weight: 600;">
+            Rule-Based Classification Engine v1.2
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="seg-category">1. Select Device Category</label>
+            <select id="seg-category" class="form-control">
+              <option value="Computers & Laptops">💻 Computers & Laptops</option>
+              <option value="Mobile Phones & Tablets">📱 Mobile Phones & Tablets</option>
+              <option value="Chargers & Cables">🔌 Chargers & Cables</option>
+              <option value="Printers & Scanners">🖨️ Printers & Scanners</option>
+              <option value="Keyboards, Mice & Peripherals">⌨️ Keyboards, Mice & Peripherals</option>
+              <option value="Circuit Boards & Components">🔧 Circuit Boards & PCBs</option>
+              <option value="Batteries & Others">🔋 Batteries & Energy Storage</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="seg-condition">2. Current Functional State</label>
+            <select id="seg-condition" class="form-control">
+              <option value="working">✅ Working / Fully Functional</option>
+              <option value="minor_fault">🔧 Minor Defect (Repairable: e.g. broken screen, battery drain)</option>
+              <option value="dead">❌ Completely Dead / Damaged / Obsolete</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="seg-damage">3. Physical Integrity & Hazards</label>
+            <select id="seg-damage" class="form-control">
+              <option value="intact">Intact casing, no leaks or swelling</option>
+              <option value="swollen_battery">⚠️ Swollen / Hot / Punctured Battery</option>
+              <option value="cracked_screen">Cracked Glass / Broken Housing</option>
+              <option value="exposed_wiring">Exposed Internal Circuits or Wires</option>
+            </select>
+          </div>
+
+          <div class="form-group" style="display:flex; align-items:flex-end;">
+            <button id="btn-assess" class="btn btn-primary btn-lg" style="width:100%;">
+              🔍 Analyze & Segregate
+            </button>
+          </div>
+        </div>
+
+        <!-- Segregation Output Result -->
+        <div id="seg-result" class="card" style="margin-top: var(--space-xl); background: var(--gray-50); border: 2px dashed var(--green-400); display:none;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: var(--space-md); margin-bottom: var(--space-md);">
+            <div>
+              <span id="result-badge" class="badge badge-collected" style="font-size:0.9rem; padding: 6px 14px;">Recommended Pathway</span>
+              <h3 id="result-title" style="margin-top: 8px; color: var(--green-800); font-size: 1.4rem;">Refurbishment & Re-use</h3>
+            </div>
+            <a href="collection.html" class="btn btn-primary btn-sm">Register for Collection ➔</a>
+          </div>
+
+          <p id="result-summary" style="font-size: 1rem; color: var(--text-primary); margin-bottom: var(--space-md);"></p>
+
+          <div class="result-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="result-item" style="background: white; border: 1px solid var(--border); text-align: left;">
+              <span style="font-size: 1.5rem;">♻️</span>
+              <h4 style="font-size: 1rem; color: var(--gray-800); margin: 6px 0 2px;">Primary Classification</h4>
+              <p id="result-classification" style="color: var(--green-600); font-weight: 700;"></p>
+            </div>
+            <div class="result-item" style="background: white; border: 1px solid var(--border); text-align: left;">
+              <span style="font-size: 1.5rem;">🧪</span>
+              <h4 style="font-size: 1rem; color: var(--gray-800); margin: 6px 0 2px;">Hazard Level</h4>
+              <p id="result-hazard" style="color: var(--amber-500); font-weight: 700;"></p>
+            </div>
+            <div class="result-item" style="background: white; border: 1px solid var(--border); text-align: left;">
+              <span style="font-size: 1.5rem;">📍</span>
+              <h4 style="font-size: 1rem; color: var(--gray-800); margin: 6px 0 2px;">Recommended Channel</h4>
+              <p id="result-channel" style="color: var(--blue-500); font-weight: 700;"></p>
+            </div>
+            <div class="result-item" style="background: white; border: 1px solid var(--border); text-align: left;">
+              <span style="font-size: 1.5rem;">💡</span>
+              <h4 style="font-size: 1rem; color: var(--gray-800); margin: 6px 0 2px;">Key Recoverable Resources</h4>
+              <p id="result-materials" style="color: var(--purple-500); font-weight: 700;"></p>
+            </div>
+          </div>
+
+          <div id="result-safety-box" style="margin-top: var(--space-md); padding: var(--space-md); border-radius: var(--radius-md); background: #FEF2F2; border-left: 4px solid #EF4444; color: #991B1B; font-size: 0.9rem;">
+            <strong>⚠️ Safety & Handling Instruction:</strong>
+            <span id="result-safety-text"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- The 4 Core Segregation Pillars -->
+      <div class="section-header" style="text-align: left; margin-bottom: var(--space-xl);">
+        <span class="section-badge">🗂️ Segregation Hierarchy</span>
+        <h2>The Four E-Waste Segregation Streams</h2>
+        <p>Scientific e-waste management classifies discarded electronics into four distinct channels to maximize resource recovery while eliminating environmental hazards.</p>
+      </div>
+
+      <div class="info-grid" style="margin-bottom: var(--space-3xl);">
+        <!-- Stream 1 -->
+        <div class="info-card" style="border-top: 4px solid #22C55E;">
+          <div style="font-size: 2.2rem; margin-bottom: var(--space-sm);">🟢</div>
+          <span class="badge" style="background:#DCFCE7; color:#166534; margin-bottom: var(--space-sm);">Stream 1: Highest Value</span>
+          <h3 style="margin-bottom: var(--space-sm);">Reusable Electronics</h3>
+          <p style="font-size: 0.9rem; margin-bottom: var(--space-md);">Electronics in working condition that have reached end-of-use for their first owner, but retain full functional utility for schools, students, or NGOs.</p>
+          <ul style="font-size: 0.85rem; color: var(--text-secondary); space-y: 6px;">
+            <li>✓ Working laptops, desktops, and monitors</li>
+            <li>✓ Operational tablets and smartphones</li>
+            <li>✓ Functional routers, power adapters, and keyboards</li>
+            <li><strong>Action:</strong> Secure data wipe, cosmetic cleaning, and donation or second-hand resale.</li>
+          </ul>
+        </div>
+
+        <!-- Stream 2 -->
+        <div class="info-card" style="border-top: 4px solid #3B82F6;">
+          <div style="font-size: 2.2rem; margin-bottom: var(--space-sm);">🔵</div>
+          <span class="badge" style="background:#DBEAFE; color:#1E40AF; margin-bottom: var(--space-sm);">Stream 2: Circular Economy</span>
+          <h3 style="margin-bottom: var(--space-sm);">Repairable & Upcyclable</h3>
+          <p style="font-size: 0.9rem; margin-bottom: var(--space-md);">Devices with broken components (e.g. dead battery, damaged port, broken glass) that can be restored with modular spare parts.</p>
+          <ul style="font-size: 0.85rem; color: var(--text-secondary);">
+            <li>✓ Laptops needing RAM/SSD upgrades or battery swaps</li>
+            <li>✓ Phones with screen or charging port failure</li>
+            <li>✓ Printers requiring roller or gear replacement</li>
+            <li><strong>Action:</strong> Diagnostic testing, component refurbishing, and warranty repair.</li>
+          </ul>
+        </div>
+
+        <!-- Stream 3 -->
+        <div class="info-card" style="border-top: 4px solid #8B5CF6;">
+          <div style="font-size: 2.2rem; margin-bottom: var(--space-sm);">🟣</div>
+          <span class="badge" style="background:#F3E8FF; color:#6B21A8; margin-bottom: var(--space-sm);">Stream 3: Urban Mining</span>
+          <h3 style="margin-bottom: var(--space-sm);">Recyclable Materials</h3>
+          <p style="font-size: 0.9rem; margin-bottom: var(--space-md);">Non-functional units dismantled into base metals, printed circuit boards (PCBs), engineering plastics, and wiring for smelting and refining.</p>
+          <ul style="font-size: 0.85rem; color: var(--text-secondary);">
+            <li>✓ High-grade motherboards & gold-plated pin headers</li>
+            <li>✓ Copper motor windings, heat pipes, and AC cords</li>
+            <li>✓ Aluminum chassis and steel bracket shielding</li>
+            <li><strong>Action:</strong> Mechanical shredding, eddy-current separation, and hydrometallurgical recovery.</li>
+          </ul>
+        </div>
+
+        <!-- Stream 4 -->
+        <div class="info-card" style="border-top: 4px solid #EF4444;">
+          <div style="font-size: 2.2rem; margin-bottom: var(--space-sm);">🔴</div>
+          <span class="badge" style="background:#FEE2E2; color:#991B1B; margin-bottom: var(--space-sm);">Stream 4: High Risk</span>
+          <h3 style="margin-bottom: var(--space-sm);">Hazardous Components</h3>
+          <p style="font-size: 0.9rem; margin-bottom: var(--space-md);">Toxic materials requiring specialized hermetic isolation, thermal destruction, or hazardous waste disposal facilities to prevent soil poisoning.</p>
+          <ul style="font-size: 0.85rem; color: var(--text-secondary);">
+            <li>✓ Swollen Lithium-ion polymer cells (fire hazard)</li>
+            <li>✓ Mercury-containing cold-cathode fluorescent lamps (CCFLs)</li>
+            <li>✓ Lead-acid battery electrolyte & CRT leaded funnel glass</li>
+            <li><strong>Action:</strong> Isolation in non-conductive containers, certified hazardous e-waste handlers.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Recoverable Materials Matrix -->
+      <div class="card-flat" style="margin-bottom: var(--space-3xl);">
+        <h3 style="margin-bottom: var(--space-sm);">⛏️ Recoverable Raw Materials Breakdown</h3>
+        <p style="margin-bottom: var(--space-lg); font-size: 0.92rem;">Typical material composition found in common electronics that can be recovered through authorized industrial recycling channels:</p>
+        
+        <div class="table-container">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Device Category</th>
+                <th>Ferrous Metals (Steel/Iron)</th>
+                <th>Non-Ferrous (Copper/Aluminium)</th>
+                <th>Precious Metals (Gold/Silver)</th>
+                <th>Plastics & Polymers</th>
+                <th>Hazardous Constituents</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>💻 Laptops & PCs</strong></td>
+                <td>~20% (chassis, screws)</td>
+                <td>~14% (heatsinks, wire)</td>
+                <td>~0.02% (Gold pins, contacts)</td>
+                <td>~25% (ABS / Polycarbonate)</td>
+                <td>Lead solder, Li-ion cells</td>
+              </tr>
+              <tr>
+                <td><strong>📱 Smartphones</strong></td>
+                <td>~5% (micro-screws)</td>
+                <td>~15% (antennas, inductors)</td>
+                <td>~0.035% (Gold, Silver, Palladium)</td>
+                <td>~40% (casing, substrates)</td>
+                <td>Cobalt, Lithium, Arsenic traces</td>
+              </tr>
+              <tr>
+                <td><strong>🖨️ Printers & Scanners</strong></td>
+                <td>~45% (heavy steel frames)</td>
+                <td>~8% (stepper motors, copper)</td>
+                <td>Traces (controller boards)</td>
+                <td>~40% (plastic outer shell)</td>
+                <td>Toner micro-powders, Ozone filters</td>
+              </tr>
+              <tr>
+                <td><strong>🔌 Cables & Chargers</strong></td>
+                <td>~5% (plugs)</td>
+                <td>~45% (Pure Copper wire)</td>
+                <td>None</td>
+                <td>~45% (PVC insulation)</td>
+                <td>Brominated flame retardants (BFRs)</td>
+              </tr>
+              <tr>
+                <td><strong>🔧 Circuit Boards (PCBs)</strong></td>
+                <td>~7%</td>
+                <td>~20% (traces, busbars)</td>
+                <td>~0.08% (highest precious density)</td>
+                <td>~35% (FR-4 epoxy resin)</td>
+                <td>Lead, Cadmium, BFRs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: var(--space-sm);">
+          *Figures represent generalized industry benchmarks (UN Global E-waste Monitor & StEP Initiative). Real recovery yields depend on recycling equipment efficiency and feed purity.
+        </p>
+      </div>
+
+      <!-- Why Segregation Matters -->
+      <div style="background: linear-gradient(135deg, var(--green-900), var(--green-700)); color: white; border-radius: var(--radius-xl); padding: var(--space-2xl); margin-bottom: var(--space-3xl);">
+        <h2 style="color:white; margin-bottom: var(--space-md);">Why Mixing E-Waste with Regular Trash is Catastrophic</h2>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-top: var(--space-lg);">
+          <div>
+            <h4 style="color: var(--green-200); margin-bottom: 6px;">💧 Groundwater Contamination</h4>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85);">When circuit boards and batteries are dumped in landfills, acid rain dissolves toxic lead, cadmium, and arsenic, creating toxic leachate that poisons drinking aquifers.</p>
+          </div>
+          <div>
+            <h4 style="color: var(--green-200); margin-bottom: 6px;">🔥 Landfill Explosions & Fires</h4>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85);">Damaged lithium-ion batteries easily undergo thermal runaway when crushed by garbage compactors, igniting underground landfill fires that release dioxins and furan fumes.</p>
+          </div>
+          <div>
+            <h4 style="color: var(--green-200); margin-bottom: 6px;">⛏️ Irreversible Loss of Finite Metals</h4>
+            <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85);">Throwing away 1 metric ton of smartphones wastes 300 times more gold than is extracted from 1 metric ton of raw gold ore mined from the earth.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>♻️ EcoLoop</h3>
+          <p>Smart E-Waste Management Platform — Segregating, tracking, and restoring electronic resources for a cleaner tomorrow.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="collection.html">Register E-Waste</a>
+          <a href="segregation.html">Segregation Guide</a>
+          <a href="dashboard.html">User Dashboard</a>
+          <a href="tracking.html">Track Status</a>
+        </div>
+        <div class="footer-links">
+          <h4>Modules</h4>
+          <a href="recycling.html">Urban Mining</a>
+          <a href="analytics.html">Impact Analytics</a>
+          <a href="awareness.html">Safety Info</a>
+          <a href="admin.html">Admin Panel</a>
+        </div>
+        <div class="footer-links">
+          <h4>Project</h4>
+          <a href="about.html">About Team</a>
+          <a href="about.html#contact">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EcoLoop — College FA-2 E-Waste Management Assessment</p>
+        <p>Built with ❤️ for a Circular Economy</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/segregation.js"></script>
+</body>
+</html>

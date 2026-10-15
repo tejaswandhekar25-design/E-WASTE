@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register E-Waste — EcoLoop</title>
+  <meta name="description" content="Register your old electronic devices for responsible collection and recycling through EcoLoop." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-brand">
+        <div class="logo-icon">♻️</div>
+        EcoLoop
+      </a>
+      <div class="navbar-menu" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="collection.html" class="active">Collect</a>
+        <a href="segregation.html">Segregate</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="tracking.html">Tracking</a>
+        <a href="recycling.html">Recycling</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="admin.html">Admin</a>
+        <a href="about.html">About</a>
+        <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Register E-Waste</span>
+      </div>
+      <h1>♻️ Register Your E-Waste</h1>
+      <p>Fill in the details below to register your electronic waste for collection and responsible recycling.</p>
+    </div>
+  </div>
+
+  <!-- Collection Form -->
+  <section class="page-content">
+    <div class="container" style="max-width: 800px;">
+      <!-- Success Message (hidden by default) -->
+      <div id="success-message" style="display:none;" class="card-flat" style="margin-bottom: var(--space-xl);">
+        <div style="text-align:center; padding: var(--space-xl);">
+          <div style="font-size: 4rem; margin-bottom: var(--space-md);">🎉</div>
+          <h2 style="color: var(--green-600); margin-bottom: var(--space-sm);">Registration Successful!</h2>
+          <p style="font-size: 1.1rem; margin-bottom: var(--space-md);">Your e-waste collection request has been submitted.</p>
+          <div style="background: var(--green-50); border-radius: var(--radius-md); padding: var(--space-md); display: inline-block; margin-bottom: var(--space-lg);">
+            <p style="font-size: 0.85rem; color: var(--text-muted);">Your Request ID</p>
+            <h3 id="success-request-id" style="color: var(--green-700); font-size: 1.4rem;"></h3>
+          </div>
+          <p style="font-size: 0.9rem; margin-bottom: var(--space-lg);">Save this ID to track your collection request status. You can view your request in the <a href="dashboard.html" style="color: var(--green-600); font-weight: 600;">Dashboard</a>.</p>
+          <div style="display: flex; gap: var(--space-md); justify-content: center; flex-wrap: wrap;">
+            <a href="dashboard.html" class="btn btn-primary">📊 Go to Dashboard</a>
+            <a href="tracking.html" class="btn btn-secondary">📍 Track Request</a>
+            <button class="btn btn-outline" onclick="resetForm()">➕ Register Another</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- The Form -->
+      <div id="collection-form-container">
+        <form id="collection-form" class="card-flat" novalidate>
+          <h3 style="margin-bottom: var(--space-xs);">📝 Collection Request Form</h3>
+          <p style="margin-bottom: var(--space-xl);">All fields marked with <span style="color: var(--red-500);">*</span> are required.</p>
+
+          <!-- Personal Info -->
+          <h4 style="margin-bottom: var(--space-md); color: var(--green-700);">👤 Your Information</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="userName">Full Name <span class="required">*</span></label>
+              <input type="text" id="userName" class="form-control" placeholder="e.g., Aarav Sharma" />
+              <p class="form-error">Please enter your name</p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address <span class="required">*</span></label>
+              <input type="email" id="email" class="form-control" placeholder="e.g., aarav@example.com" />
+              <p class="form-error">Please enter a valid email</p>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Contact Number <span class="required">*</span></label>
+              <input type="tel" id="phone" class="form-control" placeholder="e.g., 9876543210" />
+              <p class="form-error">Please enter a valid 10-digit number</p>
+            </div>
+            <div class="form-group">
+              <label for="city">City / Area <span class="required">*</span></label>
+              <input type="text" id="city" class="form-control" placeholder="e.g., Mumbai" />
+              <p class="form-error">Please enter your city</p>
+            </div>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid var(--border); margin: var(--space-lg) 0;" />
+
+          <!-- Device Info -->
+          <h4 style="margin-bottom: var(--space-md); color: var(--green-700);">📱 Device Information</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="category">E-Waste Category <span class="required">*</span></label>
+              <select id="category" class="form-control">
+                <option value="">Select a category</option>
+                <option value="Computers & Laptops">💻 Computers & Laptops</option>
+                <option value="Mobile Phones & Tablets">📱 Mobile Phones & Tablets</option>
+                <option value="Chargers & Cables">🔌 Chargers & Cables</option>
+                <option value="Printers & Scanners">🖨️ Printers & Scanners</option>
+                <option value="Keyboards, Mice & Peripherals">⌨️ Keyboards, Mice & Peripherals</option>
+                <option value="Circuit Boards & Components">🔧 Circuit Boards & Components</option>
+                <option value="Batteries & Others">🔋 Batteries & Others</option>
+              </select>
+              <p class="form-error">Please select a category</p>
+            </div>
+            <div class="form-group">
+              <label for="deviceName">Device Name <span class="required">*</span></label>
+              <input type="text" id="deviceName" class="form-control" placeholder="e.g., Dell Inspiron Laptop" />
+              <p class="form-error">Please enter the device name</p>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="quantity">Quantity <span class="required">*</span></label>
+              <input type="number" id="quantity" class="form-control" placeholder="e.g., 2" min="1" max="100" />
+              <p class="form-error">Enter a valid quantity (1-100)</p>
+            </div>
+            <div class="form-group">
+              <label for="weightKg">Approximate Weight (kg) <span class="required">*</span></label>
+              <input type="number" id="weightKg" class="form-control" placeholder="e.g., 2.5" min="0.01" max="500" step="0.01" />
+              <p class="form-error">Enter a valid weight (0.01-500 kg)</p>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="deviceCondition">Device Condition <span class="required">*</span></label>
+              <select id="deviceCondition" class="form-control">
+                <option value="">Select condition</option>
+                <option value="Working">✅ Working</option>
+                <option value="Repairable">🔧 Repairable</option>
+                <option value="Non-functional">❌ Non-functional</option>
+              </select>
+              <p class="form-error">Please select the device condition</p>
+            </div>
+            <div class="form-group">
+              <label for="collectionMethod">Collection Method <span class="required">*</span></label>
+              <select id="collectionMethod" class="form-control">
+                <option value="">Select method</option>
+                <option value="Drop-off">📍 Drop-off at Collection Center</option>
+                <option value="Pickup Request">🚚 Pickup Request (Simulated)</option>
+              </select>
+              <p class="form-error">Please select a collection method</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="notes">Additional Notes (Optional)</label>
+            <textarea id="notes" class="form-control" rows="3" placeholder="Any additional details about the device..."></textarea>
+          </div>
+
+          <!-- Privacy Notice -->
+          <div class="privacy-notice">
+            <span>🔒</span>
+            <span><strong>Privacy Notice:</strong> Your contact information is stored locally in this browser's LocalStorage for demonstration purposes only. This is a college project prototype and does not transmit data to any server. Do not enter real sensitive information in a prototype.</span>
+          </div>
+
+          <!-- Submit -->
+          <div style="margin-top: var(--space-xl); display: flex; gap: var(--space-md);">
+            <button type="submit" class="btn btn-primary btn-lg" style="flex:1;">♻️ Submit Registration</button>
+            <button type="reset" class="btn btn-secondary" onclick="clearValidationErrors(document.getElementById('collection-form'))">Clear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>♻️ EcoLoop</h3>
+          <p>Smart E-Waste Management Platform — Encouraging responsible electronic waste collection, segregation, recycling, and resource recovery.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="collection.html">Register E-Waste</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="tracking.html">Track Collection</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="recycling.html">Recycling Guide</a>
+          <a href="awareness.html">Safety Info</a>
+          <a href="about.html">About</a>
+        </div>
+        <div class="footer-links">
+          <h4>Contact</h4>
+          <a href="about.html#contact">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EcoLoop — FA-2 College Project</p>
+        <p>Built with ❤️ for Sustainability</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/collection.js"></script>
+</body>
+</html>

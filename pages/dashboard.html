@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Dashboard — EcoLoop ♻️</title>
+  <meta name="description" content="View your registered e-waste collection requests, track real-time recycling progress, and inspect resource recovery statistics." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main Navigation">
+    <div class="navbar-inner">
+      <a href="../index.html" class="navbar-brand">
+        <div class="logo-icon">♻️</div>
+        EcoLoop
+      </a>
+      <div class="navbar-menu" id="navMenu">
+        <a href="../index.html">Home</a>
+        <a href="collection.html">Collect</a>
+        <a href="segregation.html">Segregate</a>
+        <a href="dashboard.html" class="active">Dashboard</a>
+        <a href="tracking.html">Tracking</a>
+        <a href="recycling.html">Recycling</a>
+        <a href="analytics.html">Analytics</a>
+        <a href="awareness.html">Awareness</a>
+        <a href="admin.html">Admin</a>
+        <a href="about.html">About</a>
+        <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+      </div>
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>Dashboard</span>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:var(--space-md);">
+        <div>
+          <h1>📊 E-Waste Collection Dashboard</h1>
+          <p>Monitor your active e-waste collection requests, registered weights, and estimated material recovery.</p>
+        </div>
+        <div style="display:flex; gap:var(--space-sm);">
+          <a href="collection.html" class="btn btn-primary btn-sm">➕ New Registration</a>
+          <button id="btn-export-csv" class="btn btn-secondary btn-sm" onclick="EcoStorage.downloadCSV()">📥 Export CSV</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container">
+
+      <!-- KPI Statistics Cards -->
+      <div class="stats-grid" style="margin-bottom: var(--space-2xl);">
+        <div class="stat-card">
+          <div class="stat-icon green">📦</div>
+          <div class="stat-info">
+            <h3 id="dash-total-requests">0</h3>
+            <p>Total Registered Requests</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue">⚖️</div>
+          <div class="stat-info">
+            <h3 id="dash-total-weight">0.0 kg</h3>
+            <p>Total Registered Weight</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon amber">⏳</div>
+          <div class="stat-info">
+            <h3 id="dash-pending-count">0</h3>
+            <p>Pending Processing</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon green">✅</div>
+          <div class="stat-info">
+            <h3 id="dash-collected-count">0</h3>
+            <p>Collected / Recycled</p>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon blue" style="background:#F3E8FF; color:#7C3AED;">✨</div>
+          <div class="stat-info">
+            <h3 id="dash-recoverable-weight">0.0 kg</h3>
+            <p>Est. Recyclable Materials*</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclosed Assumptions Note -->
+      <div style="background:var(--white); border-left: 4px solid var(--green-500); padding: 12px 16px; border-radius: var(--radius-md); font-size: 0.85rem; color: var(--text-secondary); margin-bottom: var(--space-xl); border: 1px solid var(--border);">
+        <strong>ℹ️ Calculation Transparency:</strong> Estimated recyclable materials assumes an industry standard ~82% average recovery rate of metals and thermoplastics per registered kg of mixed electronics. This is a model estimate for academic evaluation, not a guaranteed yield.
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="filters-bar">
+        <input type="text" id="dash-search" class="form-control" placeholder="🔍 Search ID, device, city..." style="flex:1; min-width: 200px;" />
+        
+        <select id="dash-category-filter" class="form-control" style="width: auto; min-width: 180px;">
+          <option value="ALL">All Categories</option>
+          <option value="Computers & Laptops">💻 Computers & Laptops</option>
+          <option value="Mobile Phones & Tablets">📱 Mobile Phones & Tablets</option>
+          <option value="Chargers & Cables">🔌 Chargers & Cables</option>
+          <option value="Printers & Scanners">🖨️ Printers & Scanners</option>
+          <option value="Keyboards, Mice & Peripherals">⌨️ Peripherals</option>
+          <option value="Circuit Boards & Components">🔧 Circuit Boards</option>
+          <option value="Batteries & Others">🔋 Batteries & Others</option>
+        </select>
+
+        <select id="dash-status-filter" class="form-control" style="width: auto; min-width: 150px;">
+          <option value="ALL">All Statuses</option>
+          <option value="Pending">Pending</option>
+          <option value="Scheduled">Scheduled</option>
+          <option value="Collected">Collected</option>
+          <option value="Sent to Recycler">Sent to Recycler</option>
+          <option value="Recycled">Recycled</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+
+        <button class="btn btn-secondary btn-sm" onclick="resetFilters()">Reset Filters</button>
+      </div>
+
+      <!-- Collection Table / History -->
+      <div class="card-flat" style="padding: 0; overflow:hidden;">
+        <div style="padding: var(--space-md) var(--space-lg); border-bottom: 1px solid var(--border); display:flex; justify-content:space-between; align-items:center;">
+          <h3 style="font-size: 1.1rem; margin:0;">📋 Collection Requests History</h3>
+          <span id="dash-table-count" style="font-size: 0.85rem; color: var(--text-muted);">Showing 0 records</span>
+        </div>
+
+        <div class="table-container" style="border:none; border-radius:0;">
+          <table class="data-table" id="dashboard-table">
+            <thead>
+              <tr>
+                <th>Request ID</th>
+                <th>Date</th>
+                <th>Device & Category</th>
+                <th>Qty</th>
+                <th>Weight (kg)</th>
+                <th>Method</th>
+                <th>Status</th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="dash-table-body">
+              <!-- Dynamically populated via dashboard.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Empty State (Shown when no matching rows) -->
+        <div id="dash-empty-state" class="empty-state" style="display:none;">
+          <div class="empty-icon">📭</div>
+          <h3>No Collection Requests Found</h3>
+          <p>No e-waste items match your current search and filter criteria. You can register a new device anytime!</p>
+          <a href="collection.html" class="btn btn-primary btn-sm">➕ Register E-Waste</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Details Modal -->
+  <div id="request-detail-modal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-req-title">Request Details</h3>
+        <button class="modal-close" onclick="closeModal('request-detail-modal')">✕</button>
+      </div>
+      <div id="modal-req-content">
+        <!-- Dynamically injected -->
+      </div>
+      <div style="margin-top: var(--space-lg); display: flex; justify-content: flex-end; gap: var(--space-sm);">
+        <button class="btn btn-secondary btn-sm" onclick="closeModal('request-detail-modal')">Close</button>
+        <a id="modal-track-link" href="#" class="btn btn-primary btn-sm">📍 Track Status</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>♻️ EcoLoop</h3>
+          <p>Smart E-Waste Management Platform — Providing practical software solutions for electronic waste recovery and recycling.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="collection.html">Register E-Waste</a>
+          <a href="dashboard.html">User Dashboard</a>
+          <a href="tracking.html">Track Status</a>
+        </div>
+        <div class="footer-links">
+          <h4>Modules</h4>
+          <a href="recycling.html">Urban Mining</a>
+          <a href="analytics.html">Impact Analytics</a>
+          <a href="awareness.html">Safety Guide</a>
+          <a href="admin.html">Admin Panel</a>
+        </div>
+        <div class="footer-links">
+          <h4>Academic Project</h4>
+          <a href="about.html">Project Details</a>
+          <a href="about.html#team">Team Members</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 EcoLoop — College FA-2 E-Waste Management</p>
+        <p>Built with ❤️ for a Circular Economy</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/storage.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/dashboard.js"></script>
+</body>
+</html>
