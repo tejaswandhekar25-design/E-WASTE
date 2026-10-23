@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B2B Liquidity Exchange & Scrap Auction — EcoReclaim 🤝</title>
+  <meta name="description" content="Enterprise B2B electronic waste liquidity exchange, live reverse auctions, and scrap metal trading portal connecting ITAD generators with R2v3 smelters." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤝</text></svg>" />
+  <style>
+    .b2b-lot-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .b2b-lot-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--green-400);
+    }
+    .live-dot {
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #EF4444;
+      box-shadow: 0 0 8px #EF4444;
+      animation: pulseLive 1.5s infinite;
+    }
+    @keyframes pulseLive {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+    .commodity-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+    <!-- Site Header (Unified Fixed Container) -->
+  <header class="site-header">
+    <div class="live-commodity-ticker-bar">
+      <div class="ticker-content" id="globalTickerBar">
+        <span class="ticker-item">🔴 <strong>LIVE LME COMMODITY INDEX:</strong></span>
+        <span class="ticker-item">🥇 Gold (Au 99.9%): <span class="ticker-rate">₹6,845.50/g</span> <span class="ticker-up">+1.24%</span></span>
+        <span class="ticker-item">🥈 Silver (Ag): <span class="ticker-rate">₹83.40/g</span> <span class="ticker-up">+0.85%</span></span>
+        <span class="ticker-item">🥉 Copper (Cathode): <span class="ticker-rate">₹748.00/kg</span> <span class="ticker-up">+2.10%</span></span>
+        <span class="ticker-item">🔋 Lithium (Battery Grade): <span class="ticker-rate">₹1,420.00/kg</span> <span class="ticker-down">-0.45%</span></span>
+        <span class="ticker-item">⚡ Palladium: <span class="ticker-rate">₹2,980.00/g</span> <span class="ticker-up">+1.50%</span></span>
+        <span class="ticker-item">🏛️ CPCB EPR Target Compliance Index: <span class="ticker-rate">94.2%</span> <span class="ticker-up">Audit Verified</span></span>
+      </div>
+    </div>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+          <div class="logo-icon">♻️</div>
+          EcoLoop
+        </a>
+        <div class="navbar-menu" id="navMenu">
+          <a href="../index.html">Home</a>
+          <a href="collection.html" >Collect</a>
+          
+          <div class="nav-dropdown active">
+            <div class="nav-dropdown-toggle">
+              Enterprise Suite ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="ai-scanner.html" class="nav-dropdown-item ">
+                <span class="item-icon">🤖</span>
+                <div>
+                  <span class="item-title">AI Vision Scanner</span>
+                  <span class="item-desc">Component assay & thermal hazard vision</span>
+                </div>
+              </a>
+              <a href="b2b-exchange.html" class="nav-dropdown-item active">
+                <span class="item-icon">🤝</span>
+                <div>
+                  <span class="item-title">B2B Liquidity Auction</span>
+                  <span class="item-desc">Live scrap trading & LME spot pricing</span>
+                </div>
+              </a>
+              <a href="epr-compliance.html" class="nav-dropdown-item ">
+                <span class="item-icon">🏛️</span>
+                <div>
+                  <span class="item-title">CPCB EPR & ESG Center</span>
+                  <span class="item-desc">Form 2/3/6 & SHA-256 digital seals</span>
+                </div>
+              </a>
+              <a href="recycling.html" class="nav-dropdown-item ">
+                <span class="item-icon">⛏️</span>
+                <div>
+                  <span class="item-title">Urban Mining Calculator</span>
+                  <span class="item-desc">Metallurgical precious metal recovery</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown ">
+            <div class="nav-dropdown-toggle">
+              Operations ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="tracking.html" class="nav-dropdown-item ">
+                <span class="item-icon">📦</span>
+                <div>
+                  <span class="item-title">Live Tracking</span>
+                  <span class="item-desc">Chain of custody & status updates</span>
+                </div>
+              </a>
+              <a href="segregation.html" class="nav-dropdown-item ">
+                <span class="item-icon">🏷️</span>
+                <div>
+                  <span class="item-title">Smart Segregation</span>
+                  <span class="item-desc">Automated triage & classification</span>
+                </div>
+              </a>
+              <a href="dashboard.html" class="nav-dropdown-item ">
+                <span class="item-icon">📊</span>
+                <div>
+                  <span class="item-title">Operations Dashboard</span>
+                  <span class="item-desc">Throughput, SLA & recovery metrics</span>
+                </div>
+              </a>
+              <a href="analytics.html" class="nav-dropdown-item ">
+                <span class="item-icon">📈</span>
+                <div>
+                  <span class="item-title">LCA & ESG Analytics</span>
+                  <span class="item-desc">Carbon offsets & circular diversion</span>
+                </div>
+              </a>
+              <a href="awareness.html" class="nav-dropdown-item ">
+                <span class="item-icon">💡</span>
+                <div>
+                  <span class="item-title">Citizen Awareness</span>
+                  <span class="item-desc">Hazard guide & disposal directory</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="about.html" >About</a>
+          <a href="admin.html" >Admin</a>
+          <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>B2B Liquidity Exchange</span>
+      </div>
+      <h1>🤝 Enterprise E-Waste Exchange & Scrap Auction</h1>
+      <p>Institutional trading desk connecting corporate IT asset disposition (ITAD) departments directly with accredited R2v3 smelting refineries and hydrometallurgical extractors.</p>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container">
+
+      <!-- Live Commodity Rates Bar -->
+      <div class="card-flat" style="margin-bottom:var(--space-2xl); background:#0F172A; color:white; border:none; padding:var(--space-md) var(--space-xl);">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-md);">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="live-dot"></span>
+            <span style="font-size:0.85rem; font-weight:700; color:#4ADE80; text-transform:uppercase;">Live LME & Commodity Spot Index</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:12px;" id="liveRatesContainer">
+            <span class="commodity-pill" style="color:#0F172A;">🥇 Gold: ₹6,845/g (+1.2%)</span>
+            <span class="commodity-pill" style="color:#0F172A;">🥈 Silver: ₹83.4/g (+0.8%)</span>
+            <span class="commodity-pill" style="color:#0F172A;">🥉 Copper: ₹748/kg (+2.1%)</span>
+            <span class="commodity-pill" style="color:#0F172A;">🔋 Lithium: ₹1,420/kg (-0.4%)</span>
+            <span class="commodity-pill" style="color:#0F172A;">⚡ Palladium: ₹2,980/g (+1.5%)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action & Filter Bar -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:var(--space-md); margin-bottom:var(--space-2xl);">
+        <div>
+          <span class="section-badge">Verified Institutional Bids</span>
+          <h2 style="font-size:1.5rem; margin-top:4px;">Active Scrap & Refurbishment Lots</h2>
+        </div>
+        <button class="btn btn-primary" onclick="openNewLotModal()">
+          ➕ List New Enterprise Consignment
+        </button>
+      </div>
+
+      <!-- B2B Lots Grid -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:var(--space-xl); margin-bottom:var(--space-3xl);" id="b2bLotsGrid">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+      <!-- Calculator Section: Instant Bulk Scrap Yield Payout -->
+      <div class="card-flat" style="margin-bottom:var(--space-3xl); border-top:4px solid var(--green-600);">
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:var(--space-md);">
+          <div style="font-size:2rem;">🧮</div>
+          <div>
+            <h3 style="font-size:1.3rem; margin:0;">Live Secondary Metal Payout Calculator</h3>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+              Calculates dynamic market valuation based on current LME spot benchmark prices.
+            </p>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:var(--space-lg); margin-bottom:var(--space-lg);">
+          <div class="form-group">
+            <label for="calc-category">Consignment Material Stream</label>
+            <select id="calc-category" class="form-control" onchange="recalculatePayout()">
+              <option value="pcbs">Telecommunication & Server PCBs</option>
+              <option value="smartphones">Dismantled Smartphones / Tablets</option>
+              <option value="laptops">Enterprise Laptops & Desktops</option>
+              <option value="batteries">Lithium Battery Pouch / Prismatic</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="calc-weight">Gross Consignment Weight (kg)</label>
+            <input type="number" id="calc-weight" class="form-control" value="500" min="10" oninput="recalculatePayout()" />
+          </div>
+
+          <div class="form-group">
+            <label>Estimated Market Spot Valuation</label>
+            <div style="font-size:1.6rem; font-weight:800; color:var(--green-700); padding-top:6px;" id="calc-total-val">
+              ₹3,82,450
+            </div>
+          </div>
+        </div>
+
+        <div id="calc-breakdown" style="font-size:0.85rem; color:var(--text-secondary); background:var(--gray-50); padding:12px; border-radius:var(--radius-md);">
+          Estimated Pure Recoveries: <strong>425.0g Gold</strong>, <strong>110.0kg Copper</strong>, <strong>150.0kg Polymers</strong>.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Bid Modal -->
+  <div class="modal-overlay" id="bidModal">
+    <div class="modal-box" style="max-width:480px;">
+      <div class="modal-header">
+        <h3 id="modalLotTitle">Submit Enterprise Bid</h3>
+        <button class="modal-close" onclick="closeBidModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:var(--space-md);">
+          Bids submitted are legally binding and backed by instant bank escrow clearing.
+        </p>
+
+        <div style="background:var(--gray-50); padding:12px; border-radius:var(--radius-md); margin-bottom:var(--space-md);">
+          <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-bottom:4px;">
+            <span>Current High Bid:</span>
+            <strong id="modalCurrentBid" style="color:#0F172A;">₹0</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
+            <span>Current Leader:</span>
+            <span id="modalHighBidder" style="color:var(--text-secondary);">-</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="bidOrgName">Your Authorized Organization</label>
+          <input type="text" id="bidOrgName" class="form-control" placeholder="e.g. EcoSmelt Refiners Ltd" value="EcoSmelt Refining Ltd (R2v3)" />
+        </div>
+
+        <div class="form-group">
+          <label for="bidAmount">Your Offer Amount (INR ₹)</label>
+          <input type="number" id="bidAmount" class="form-control" placeholder="Enter bid higher than current" />
+          <p class="form-hint">Must exceed current highest bid.</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="closeBidModal()">Cancel</button>
+        <button class="btn btn-primary" onclick="submitBid()">Confirm & Lock Escrow</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom" style="border-top:1px solid var(--border); padding-top:var(--space-xl); margin-top:var(--space-2xl); text-align:center;">
+      <p>&copy; 2026 EcoReclaim Platform. Pimpri Chinchwad College of Engineering (PCCOE) • Formative Assessment 2 & Enterprise Commercial Suite.</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/b2b-exchange.js"></script>
+</body>
+</html>

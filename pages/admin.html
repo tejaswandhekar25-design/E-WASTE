@@ -10,31 +10,118 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
-    <div class="navbar-inner">
-      <a href="../index.html" class="navbar-brand">
-        <div class="logo-icon">♻️</div>
-        EcoLoop
-      </a>
-      <div class="navbar-menu" id="navMenu">
-        <a href="../index.html">Home</a>
-        <a href="collection.html">Collect</a>
-        <a href="segregation.html">Segregate</a>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="tracking.html">Tracking</a>
-        <a href="recycling.html">Recycling</a>
-        <a href="analytics.html">Analytics</a>
-        <a href="awareness.html">Awareness</a>
-        <a href="admin.html" class="active">Admin</a>
-        <a href="about.html">About</a>
-        <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+    <!-- Site Header (Unified Fixed Container) -->
+  <header class="site-header">
+    <div class="live-commodity-ticker-bar">
+      <div class="ticker-content" id="globalTickerBar">
+        <span class="ticker-item">🔴 <strong>LIVE LME COMMODITY INDEX:</strong></span>
+        <span class="ticker-item">🥇 Gold (Au 99.9%): <span class="ticker-rate">₹6,845.50/g</span> <span class="ticker-up">+1.24%</span></span>
+        <span class="ticker-item">🥈 Silver (Ag): <span class="ticker-rate">₹83.40/g</span> <span class="ticker-up">+0.85%</span></span>
+        <span class="ticker-item">🥉 Copper (Cathode): <span class="ticker-rate">₹748.00/kg</span> <span class="ticker-up">+2.10%</span></span>
+        <span class="ticker-item">🔋 Lithium (Battery Grade): <span class="ticker-rate">₹1,420.00/kg</span> <span class="ticker-down">-0.45%</span></span>
+        <span class="ticker-item">⚡ Palladium: <span class="ticker-rate">₹2,980.00/g</span> <span class="ticker-up">+1.50%</span></span>
+        <span class="ticker-item">🏛️ CPCB EPR Target Compliance Index: <span class="ticker-rate">94.2%</span> <span class="ticker-up">Audit Verified</span></span>
       </div>
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
-  </nav>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+          <div class="logo-icon">♻️</div>
+          EcoLoop
+        </a>
+        <div class="navbar-menu" id="navMenu">
+          <a href="../index.html">Home</a>
+          <a href="collection.html" >Collect</a>
+          
+          <div class="nav-dropdown ">
+            <div class="nav-dropdown-toggle">
+              Enterprise Suite ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="ai-scanner.html" class="nav-dropdown-item ">
+                <span class="item-icon">🤖</span>
+                <div>
+                  <span class="item-title">AI Vision Scanner</span>
+                  <span class="item-desc">Component assay & thermal hazard vision</span>
+                </div>
+              </a>
+              <a href="b2b-exchange.html" class="nav-dropdown-item ">
+                <span class="item-icon">🤝</span>
+                <div>
+                  <span class="item-title">B2B Liquidity Auction</span>
+                  <span class="item-desc">Live scrap trading & LME spot pricing</span>
+                </div>
+              </a>
+              <a href="epr-compliance.html" class="nav-dropdown-item ">
+                <span class="item-icon">🏛️</span>
+                <div>
+                  <span class="item-title">CPCB EPR & ESG Center</span>
+                  <span class="item-desc">Form 2/3/6 & SHA-256 digital seals</span>
+                </div>
+              </a>
+              <a href="recycling.html" class="nav-dropdown-item ">
+                <span class="item-icon">⛏️</span>
+                <div>
+                  <span class="item-title">Urban Mining Calculator</span>
+                  <span class="item-desc">Metallurgical precious metal recovery</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown ">
+            <div class="nav-dropdown-toggle">
+              Operations ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="tracking.html" class="nav-dropdown-item ">
+                <span class="item-icon">📦</span>
+                <div>
+                  <span class="item-title">Live Tracking</span>
+                  <span class="item-desc">Chain of custody & status updates</span>
+                </div>
+              </a>
+              <a href="segregation.html" class="nav-dropdown-item ">
+                <span class="item-icon">🏷️</span>
+                <div>
+                  <span class="item-title">Smart Segregation</span>
+                  <span class="item-desc">Automated triage & classification</span>
+                </div>
+              </a>
+              <a href="dashboard.html" class="nav-dropdown-item ">
+                <span class="item-icon">📊</span>
+                <div>
+                  <span class="item-title">Operations Dashboard</span>
+                  <span class="item-desc">Throughput, SLA & recovery metrics</span>
+                </div>
+              </a>
+              <a href="analytics.html" class="nav-dropdown-item ">
+                <span class="item-icon">📈</span>
+                <div>
+                  <span class="item-title">LCA & ESG Analytics</span>
+                  <span class="item-desc">Carbon offsets & circular diversion</span>
+                </div>
+              </a>
+              <a href="awareness.html" class="nav-dropdown-item ">
+                <span class="item-icon">💡</span>
+                <div>
+                  <span class="item-title">Citizen Awareness</span>
+                  <span class="item-desc">Hazard guide & disposal directory</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="about.html" >About</a>
+          <a href="admin.html" class='active'>Admin</a>
+          <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
   <!-- Page Header -->
   <div class="page-header">

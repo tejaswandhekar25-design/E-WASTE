@@ -10,31 +10,118 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♻️</text></svg>" />
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar" role="navigation" aria-label="Main Navigation">
-    <div class="navbar-inner">
-      <a href="index.html" class="navbar-brand">
-        <div class="logo-icon">♻️</div>
-        EcoLoop
-      </a>
-      <div class="navbar-menu" id="navMenu">
-        <a href="index.html" class="active">Home</a>
-        <a href="pages/collection.html">Collect</a>
-        <a href="pages/segregation.html">Segregate</a>
-        <a href="pages/dashboard.html">Dashboard</a>
-        <a href="pages/tracking.html">Tracking</a>
-        <a href="pages/recycling.html">Recycling</a>
-        <a href="pages/analytics.html">Analytics</a>
-        <a href="pages/awareness.html">Awareness</a>
-        <a href="pages/admin.html">Admin</a>
-        <a href="pages/about.html">About</a>
-        <a href="pages/collection.html" class="navbar-cta">♻️ Recycle Now</a>
+    <!-- Site Header (Unified Fixed Container) -->
+  <header class="site-header">
+    <div class="live-commodity-ticker-bar">
+      <div class="ticker-content" id="globalTickerBar">
+        <span class="ticker-item">🔴 <strong>LIVE LME COMMODITY INDEX:</strong></span>
+        <span class="ticker-item">🥇 Gold (Au 99.9%): <span class="ticker-rate">₹6,845.50/g</span> <span class="ticker-up">+1.24%</span></span>
+        <span class="ticker-item">🥈 Silver (Ag): <span class="ticker-rate">₹83.40/g</span> <span class="ticker-up">+0.85%</span></span>
+        <span class="ticker-item">🥉 Copper (Cathode): <span class="ticker-rate">₹748.00/kg</span> <span class="ticker-up">+2.10%</span></span>
+        <span class="ticker-item">🔋 Lithium (Battery Grade): <span class="ticker-rate">₹1,420.00/kg</span> <span class="ticker-down">-0.45%</span></span>
+        <span class="ticker-item">⚡ Palladium: <span class="ticker-rate">₹2,980.00/g</span> <span class="ticker-up">+1.50%</span></span>
+        <span class="ticker-item">🏛️ CPCB EPR Target Compliance Index: <span class="ticker-rate">94.2%</span> <span class="ticker-up">Audit Verified</span></span>
       </div>
-      <button class="menu-toggle" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
     </div>
-  </nav>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="navbar-inner">
+        <a href="index.html" class="navbar-brand">
+          <div class="logo-icon">♻️</div>
+          EcoLoop
+        </a>
+        <div class="navbar-menu" id="navMenu">
+          <a href="index.html" class="active">Home</a>
+          <a href="pages/collection.html">Collect</a>
+          
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-toggle">
+              Enterprise Suite ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="pages/ai-scanner.html" class="nav-dropdown-item">
+                <span class="item-icon">🤖</span>
+                <div>
+                  <span class="item-title">AI Vision Scanner</span>
+                  <span class="item-desc">Component assay & thermal hazard vision</span>
+                </div>
+              </a>
+              <a href="pages/b2b-exchange.html" class="nav-dropdown-item">
+                <span class="item-icon">🤝</span>
+                <div>
+                  <span class="item-title">B2B Liquidity Auction</span>
+                  <span class="item-desc">Live scrap trading & LME spot pricing</span>
+                </div>
+              </a>
+              <a href="pages/epr-compliance.html" class="nav-dropdown-item">
+                <span class="item-icon">🏛️</span>
+                <div>
+                  <span class="item-title">CPCB EPR & ESG Center</span>
+                  <span class="item-desc">Form 2/3/6 & SHA-256 digital seals</span>
+                </div>
+              </a>
+              <a href="pages/recycling.html" class="nav-dropdown-item">
+                <span class="item-icon">⛏️</span>
+                <div>
+                  <span class="item-title">Urban Mining Calculator</span>
+                  <span class="item-desc">Metallurgical precious metal recovery</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown">
+            <div class="nav-dropdown-toggle">
+              Operations ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="pages/tracking.html" class="nav-dropdown-item">
+                <span class="item-icon">📦</span>
+                <div>
+                  <span class="item-title">Live Tracking</span>
+                  <span class="item-desc">Chain of custody & status updates</span>
+                </div>
+              </a>
+              <a href="pages/segregation.html" class="nav-dropdown-item">
+                <span class="item-icon">🏷️</span>
+                <div>
+                  <span class="item-title">Smart Segregation</span>
+                  <span class="item-desc">Automated triage & classification</span>
+                </div>
+              </a>
+              <a href="pages/dashboard.html" class="nav-dropdown-item">
+                <span class="item-icon">📊</span>
+                <div>
+                  <span class="item-title">Operations Dashboard</span>
+                  <span class="item-desc">Throughput, SLA & recovery metrics</span>
+                </div>
+              </a>
+              <a href="pages/analytics.html" class="nav-dropdown-item">
+                <span class="item-icon">📈</span>
+                <div>
+                  <span class="item-title">LCA & ESG Analytics</span>
+                  <span class="item-desc">Carbon offsets & circular diversion</span>
+                </div>
+              </a>
+              <a href="pages/awareness.html" class="nav-dropdown-item">
+                <span class="item-icon">💡</span>
+                <div>
+                  <span class="item-title">Citizen Awareness</span>
+                  <span class="item-desc">Hazard guide & disposal directory</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="pages/about.html">About</a>
+          <a href="pages/admin.html">Admin</a>
+          <a href="pages/collection.html" class="navbar-cta">♻️ Recycle Now</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
 
   <!-- Hero Section -->
   <section class="hero">
@@ -80,6 +167,55 @@
       </div>
     </div>
   </section>
+
+  <!-- Enterprise Commercial Suite Showcase -->
+  <section class="section" style="background:#0F172A; color:white; padding: var(--space-3xl) 0;">
+    <div class="container">
+      <div style="text-align:center; max-width:760px; margin:0 auto var(--space-2xl);">
+        <span class="section-badge" style="background:#1E293B; color:#4ADE80; border:1px solid #334155;">🏢 Enterprise Commercial Edition</span>
+        <h2 style="color:white; font-size:2rem; margin-top:8px;">Advanced Industrial Clean-Tech Platform</h2>
+        <p style="color:#94A3B8; font-size:0.95rem;">
+          Engineered for corporate electronic manufacturers (OEMs), large enterprise IT asset managers, and accredited R2v3 smelting refineries with zero prototype gaps.
+        </p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:var(--space-xl); margin-bottom:var(--space-2xl);">
+        
+        <!-- Enterprise Feature 1 -->
+        <div style="background:#1E293B; border:1px solid #334155; border-radius:var(--radius-lg); padding:var(--space-xl); transition:all 0.3s ease;">
+          <div style="font-size:2.4rem; margin-bottom:12px;">🤖</div>
+          <h3 style="color:#F8FAFC; font-size:1.2rem; margin-bottom:6px;">AI Vision Neural Scanner</h3>
+          <p style="color:#94A3B8; font-size:0.85rem; line-height:1.6; margin-bottom:16px;">
+            TensorFlow & ONNX edge vision classifying circuit board gold density and flagging thermal battery swelling hazards with live canvas bounding boxes.
+          </p>
+          <a href="pages/ai-scanner.html" class="btn btn-primary btn-sm" style="background:#15803D;">Launch AI Scanner &rarr;</a>
+        </div>
+
+        <!-- Enterprise Feature 2 -->
+        <div style="background:#1E293B; border:1px solid #334155; border-radius:var(--radius-lg); padding:var(--space-xl); transition:all 0.3s ease;">
+          <div style="font-size:2.4rem; margin-bottom:12px;">🤝</div>
+          <h3 style="color:#F8FAFC; font-size:1.2rem; margin-bottom:6px;">B2B Liquidity Auction Desk</h3>
+          <p style="color:#94A3B8; font-size:0.85rem; line-height:1.6; margin-bottom:16px;">
+            Live secondary scrap trading desk with real-time bidding, escrow clearing, and instant payouts calculated against live LME precious commodity spot feeds.
+          </p>
+          <a href="pages/b2b-exchange.html" class="btn btn-primary btn-sm" style="background:#0284C7;">Open B2B Exchange &rarr;</a>
+        </div>
+
+        <!-- Enterprise Feature 3 -->
+        <div style="background:#1E293B; border:1px solid #334155; border-radius:var(--radius-lg); padding:var(--space-xl); transition:all 0.3s ease;">
+          <div style="font-size:2.4rem; margin-bottom:12px;">🏛️</div>
+          <h3 style="color:#F8FAFC; font-size:1.2rem; margin-bottom:6px;">Statutory EPR & ESG Center</h3>
+          <p style="color:#94A3B8; font-size:0.85rem; line-height:1.6; margin-bottom:16px;">
+            Automated Indian CPCB Form 2/3/6 regulatory filings, ISO 14040/44 Scope 3 carbon credit auditing, and SHA-256 cryptographically sealed destruction certificates.
+          </p>
+          <a href="pages/epr-compliance.html" class="btn btn-primary btn-sm" style="background:#7C3AED;">Generate EPR Certificate &rarr;</a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- How It Works -->
   <section class="section" id="how-it-works">

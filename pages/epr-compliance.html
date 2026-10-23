@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EPR Statutory Compliance & ESG Reporting — EcoReclaim 🏛️</title>
+  <meta name="description" content="Centralized CPCB E-Waste Rules 2022 compliance portal, Form 2/3/6 annual returns generation, and ISO 14040/44 Scope 3 corporate ESG carbon accounting." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>" />
+  <style>
+    .cert-certificate-box {
+      background: white;
+      border: 3px double #15803D;
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      box-shadow: var(--shadow-xl);
+      position: relative;
+    }
+    .cert-stamp {
+      position: absolute;
+      top: 30px; right: 30px;
+      width: 90px; height: 90px;
+      border: 3px solid #15803D;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #15803D;
+      font-weight: 800;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      transform: rotate(-15deg);
+      opacity: 0.85;
+      text-align: center;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+    <!-- Site Header (Unified Fixed Container) -->
+  <header class="site-header">
+    <div class="live-commodity-ticker-bar">
+      <div class="ticker-content" id="globalTickerBar">
+        <span class="ticker-item">🔴 <strong>LIVE LME COMMODITY INDEX:</strong></span>
+        <span class="ticker-item">🥇 Gold (Au 99.9%): <span class="ticker-rate">₹6,845.50/g</span> <span class="ticker-up">+1.24%</span></span>
+        <span class="ticker-item">🥈 Silver (Ag): <span class="ticker-rate">₹83.40/g</span> <span class="ticker-up">+0.85%</span></span>
+        <span class="ticker-item">🥉 Copper (Cathode): <span class="ticker-rate">₹748.00/kg</span> <span class="ticker-up">+2.10%</span></span>
+        <span class="ticker-item">🔋 Lithium (Battery Grade): <span class="ticker-rate">₹1,420.00/kg</span> <span class="ticker-down">-0.45%</span></span>
+        <span class="ticker-item">⚡ Palladium: <span class="ticker-rate">₹2,980.00/g</span> <span class="ticker-up">+1.50%</span></span>
+        <span class="ticker-item">🏛️ CPCB EPR Target Compliance Index: <span class="ticker-rate">94.2%</span> <span class="ticker-up">Audit Verified</span></span>
+      </div>
+    </div>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+          <div class="logo-icon">♻️</div>
+          EcoLoop
+        </a>
+        <div class="navbar-menu" id="navMenu">
+          <a href="../index.html">Home</a>
+          <a href="collection.html" >Collect</a>
+          
+          <div class="nav-dropdown active">
+            <div class="nav-dropdown-toggle">
+              Enterprise Suite ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="ai-scanner.html" class="nav-dropdown-item ">
+                <span class="item-icon">🤖</span>
+                <div>
+                  <span class="item-title">AI Vision Scanner</span>
+                  <span class="item-desc">Component assay & thermal hazard vision</span>
+                </div>
+              </a>
+              <a href="b2b-exchange.html" class="nav-dropdown-item ">
+                <span class="item-icon">🤝</span>
+                <div>
+                  <span class="item-title">B2B Liquidity Auction</span>
+                  <span class="item-desc">Live scrap trading & LME spot pricing</span>
+                </div>
+              </a>
+              <a href="epr-compliance.html" class="nav-dropdown-item active">
+                <span class="item-icon">🏛️</span>
+                <div>
+                  <span class="item-title">CPCB EPR & ESG Center</span>
+                  <span class="item-desc">Form 2/3/6 & SHA-256 digital seals</span>
+                </div>
+              </a>
+              <a href="recycling.html" class="nav-dropdown-item ">
+                <span class="item-icon">⛏️</span>
+                <div>
+                  <span class="item-title">Urban Mining Calculator</span>
+                  <span class="item-desc">Metallurgical precious metal recovery</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown ">
+            <div class="nav-dropdown-toggle">
+              Operations ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="tracking.html" class="nav-dropdown-item ">
+                <span class="item-icon">📦</span>
+                <div>
+                  <span class="item-title">Live Tracking</span>
+                  <span class="item-desc">Chain of custody & status updates</span>
+                </div>
+              </a>
+              <a href="segregation.html" class="nav-dropdown-item ">
+                <span class="item-icon">🏷️</span>
+                <div>
+                  <span class="item-title">Smart Segregation</span>
+                  <span class="item-desc">Automated triage & classification</span>
+                </div>
+              </a>
+              <a href="dashboard.html" class="nav-dropdown-item ">
+                <span class="item-icon">📊</span>
+                <div>
+                  <span class="item-title">Operations Dashboard</span>
+                  <span class="item-desc">Throughput, SLA & recovery metrics</span>
+                </div>
+              </a>
+              <a href="analytics.html" class="nav-dropdown-item ">
+                <span class="item-icon">📈</span>
+                <div>
+                  <span class="item-title">LCA & ESG Analytics</span>
+                  <span class="item-desc">Carbon offsets & circular diversion</span>
+                </div>
+              </a>
+              <a href="awareness.html" class="nav-dropdown-item ">
+                <span class="item-icon">💡</span>
+                <div>
+                  <span class="item-title">Citizen Awareness</span>
+                  <span class="item-desc">Hazard guide & disposal directory</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="about.html" >About</a>
+          <a href="admin.html" >Admin</a>
+          <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>EPR & ESG Statutory Portal</span>
+      </div>
+      <h1>🏛️ Extended Producer Responsibility (EPR) & ESG Reporting</h1>
+      <p>Automate Indian CPCB Form 2/3/6 regulatory filings, generate cryptographically signed Certificates of Destruction, and audit Scope 3 GHG carbon credits.</p>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container">
+
+      <!-- Regulatory Framework Summary Cards -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:var(--space-xl); margin-bottom:var(--space-3xl);">
+        <div class="card-flat" style="border-left:4px solid var(--green-600);">
+          <span style="font-size:0.75rem; text-transform:uppercase; color:var(--text-secondary); font-weight:700;">Statutory Law</span>
+          <h3 style="font-size:1.15rem; margin:4px 0 8px;">CPCB E-Waste Rules 2022</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+            Mandatory target quota tracking for electronics producers, importers, and brand owners (PIBOs).
+          </p>
+        </div>
+
+        <div class="card-flat" style="border-left:4px solid var(--blue-500);">
+          <span style="font-size:0.75rem; text-transform:uppercase; color:var(--text-secondary); font-weight:700;">Audited Protocol</span>
+          <h3 style="font-size:1.15rem; margin:4px 0 8px;">ISO 14044 LCA Model</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+            Ecoinvent 3.9 calibrated carbon offset methodology for corporate BRSR & SEC climate disclosures.
+          </p>
+        </div>
+
+        <div class="card-flat" style="border-left:4px solid var(--purple-500);">
+          <span style="font-size:0.75rem; text-transform:uppercase; color:var(--text-secondary); font-weight:700;">Digital Integrity</span>
+          <h3 style="font-size:1.15rem; margin:4px 0 8px;">SHA-256 Tamper-Proofing</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin:0;">
+            Every recycling manifest receives an immutable cryptographic hash preventing double-counting fraud.
+          </p>
+        </div>
+      </div>
+
+      <!-- Generator Grid: Form on Left, Live Verified Certificate on Right -->
+      <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:var(--space-2xl); margin-bottom:var(--space-3xl);">
+        
+        <!-- Generator Form -->
+        <div class="card-flat" style="padding:var(--space-xl);">
+          <h3 style="font-size:1.2rem; margin-bottom:var(--space-sm);">📋 Issue Legal CPCB Manifest Certificate</h3>
+          <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:var(--space-lg);">
+            Enter the consignment details to generate a CPCB-compliant Certificate of Recycling.
+          </p>
+
+          <form onsubmit="handleGenerateCert(event)">
+            <div class="form-group">
+              <label for="prodName">Producer / Brand Owner Name <span class="required">*</span></label>
+              <input type="text" id="prodName" class="form-control" value="Dell Technologies India Pvt Ltd" required />
+            </div>
+
+            <div class="form-group">
+              <label for="cpcbReg">CPCB EPR Registration Number <span class="required">*</span></label>
+              <input type="text" id="cpcbReg" class="form-control" value="CPCB/EPR-PROD/2022/9021" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="certWeight">Weight Diverted (kg) <span class="required">*</span></label>
+                <input type="number" id="certWeight" class="form-control" value="5400" min="50" required oninput="updateLiveESG(this.value)" />
+              </div>
+              <div class="form-group">
+                <label for="certCat">CPCB Category Code</label>
+                <select id="certCat" class="form-control">
+                  <option value="ITEW1-ITEW6 (IT & Telecom)">ITEW1-ITEW6 (IT & Telecom)</option>
+                  <option value="CEEW1-CEEW4 (Consumer Electronics)">CEEW1-CEEW4 (Consumer Electronics)</option>
+                  <option value="Solar Photovoltaic Modules">Solar Photovoltaic Modules</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%; margin-top:var(--space-sm);">
+              🏛️ Generate & Digitally Seal Certificate
+            </button>
+          </form>
+
+          <!-- ESG Live Summary -->
+          <div style="margin-top:var(--space-xl); background:var(--gray-50); padding:14px; border-radius:var(--radius-md); border:1px solid var(--border);">
+            <h4 style="font-size:0.95rem; margin-bottom:6px; color:#0F172A;">Scope 3 Carbon Impact (ISO 14044):</h4>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.82rem;">
+              <div>• CO2 Avoided: <strong id="esg-co2" style="color:var(--green-700);">18,468.0 kg</strong></div>
+              <div>• Water Preserved: <strong id="esg-water" style="color:var(--blue-600);">132,300 L</strong></div>
+              <div>• Raw Ore Avoidance: <strong id="esg-ore">442.8 kg</strong></div>
+              <div>• Carbon Credit Value: <strong id="esg-credits">₹42,500</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Certificate Preview Box -->
+        <div class="cert-certificate-box" id="certificateBox">
+          <div class="cert-stamp">
+            CPCB EPR<br/>VERIFIED<br/>2026
+          </div>
+
+          <div style="text-align:center; margin-bottom:var(--space-lg);">
+            <div style="font-size:1.8rem;">🏛️</div>
+            <h2 style="font-size:1.35rem; color:#0F172A; margin:4px 0;">STATUTORY CERTIFICATE OF RECYCLING & DESTRUCTION</h2>
+            <p style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; letter-spacing:1px; margin:0;">
+              Pursuant to Rule 13 of the E-Waste (Management) Rules, 2022
+            </p>
+          </div>
+
+          <div style="font-size:0.85rem; line-height:1.7; color:var(--gray-700); margin-bottom:var(--space-lg);">
+            <p style="margin-bottom:8px;">
+              This is to certify that an electronic waste consignment of <strong id="viewWeight">5,400 kg</strong> under category <strong id="viewCat">ITEW1-ITEW6 (IT & Telecom)</strong> has been received and processed through authorized environmentally sound dismantling and metallurgical refining.
+            </p>
+
+            <table style="width:100%; font-size:0.82rem; border-collapse:collapse; margin-top:12px;">
+              <tr style="border-bottom:1px solid var(--gray-200);">
+                <td style="padding:6px 0; color:var(--text-secondary);">Certificate Token ID:</td>
+                <td style="padding:6px 0; font-weight:700; color:#0F172A;" id="viewCertId">EPR-CPCB-2026-8812</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--gray-200);">
+                <td style="padding:6px 0; color:var(--text-secondary);">Registered Producer:</td>
+                <td style="padding:6px 0; font-weight:700;" id="viewProducer">Dell Technologies India Pvt Ltd</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--gray-200);">
+                <td style="padding:6px 0; color:var(--text-secondary);">CPCB Registration:</td>
+                <td style="padding:6px 0;" id="viewCpcb">CPCB/EPR-PROD/2022/9021</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--gray-200);">
+                <td style="padding:6px 0; color:var(--text-secondary);">Accredited Recycler:</td>
+                <td style="padding:6px 0; font-weight:600; color:var(--green-800);">EcoReclaim Smelting & Refining Corp (R2v3)</td>
+              </tr>
+              <tr style="border-bottom:1px solid var(--gray-200);">
+                <td style="padding:6px 0; color:var(--text-secondary);">Date of Execution:</td>
+                <td style="padding:6px 0;" id="viewDate">2026-10-23</td>
+              </tr>
+              <tr>
+                <td style="padding:6px 0; color:var(--text-secondary);">SHA-256 Security Hash:</td>
+                <td style="padding:6px 0; font-family:monospace; font-size:0.7rem; color:var(--gray-600); word-break:break-all;" id="viewHash">
+                  a89c3ef71b0521d960f89839340e4fbc8719273c52a09bebc5d0c83a1a459e82
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px dashed var(--gray-300); padding-top:var(--space-md);">
+            <div style="font-size:0.75rem; color:var(--text-muted);">
+              Authorized Signatory: CPCB Authorized Officer
+            </div>
+            <button class="btn btn-secondary btn-sm" onclick="window.print()">
+              🖨️ Print / Download PDF
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom" style="border-top:1px solid var(--border); padding-top:var(--space-xl); margin-top:var(--space-2xl); text-align:center;">
+      <p>&copy; 2026 EcoReclaim Platform. Pimpri Chinchwad College of Engineering (PCCOE) • Formative Assessment 2 & Enterprise Commercial Suite.</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/epr-compliance.js"></script>
+</body>
+</html>

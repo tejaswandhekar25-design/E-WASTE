@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Vision Neural Scanner — EcoReclaim 🤖</title>
+  <meta name="description" content="AI Computer Vision Neural Scanner for automated e-waste classification, component detection, lithium thermal hazard scoring, and precious metal estimation." />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>" />
+  <style>
+    .scanner-viewport {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      background: #0F172A;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #334155;
+      box-shadow: 0 10px 25px -5px rgba(0,0,0,0.3);
+    }
+    .scanner-laser {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #22C55E, #4ADE80, transparent);
+      box-shadow: 0 0 15px #4ADE80;
+      animation: scanLaser 2.2s ease-in-out infinite alternate;
+      z-index: 10;
+      display: none;
+    }
+    @keyframes scanLaser {
+      0% { top: 5%; }
+      100% { top: 92%; }
+    }
+    .reticle {
+      position: absolute;
+      border: 2px dashed rgba(74, 222, 128, 0.6);
+      border-radius: 8px;
+      pointer-events: none;
+      transition: all 0.4s ease;
+      display: none;
+    }
+    .reticle-label {
+      position: absolute;
+      top: -24px; left: 0;
+      background: #15803D;
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+    .hud-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-xl);
+      margin-top: var(--space-2xl);
+    }
+    .sample-chip {
+      cursor: pointer;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: var(--gray-100);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-700);
+      border: 1px solid var(--gray-200);
+      transition: all 0.2s;
+    }
+    .sample-chip:hover {
+      background: var(--green-50);
+      color: var(--green-700);
+      border-color: var(--green-300);
+    }
+  </style>
+</head>
+<body>
+    <!-- Site Header (Unified Fixed Container) -->
+  <header class="site-header">
+    <div class="live-commodity-ticker-bar">
+      <div class="ticker-content" id="globalTickerBar">
+        <span class="ticker-item">🔴 <strong>LIVE LME COMMODITY INDEX:</strong></span>
+        <span class="ticker-item">🥇 Gold (Au 99.9%): <span class="ticker-rate">₹6,845.50/g</span> <span class="ticker-up">+1.24%</span></span>
+        <span class="ticker-item">🥈 Silver (Ag): <span class="ticker-rate">₹83.40/g</span> <span class="ticker-up">+0.85%</span></span>
+        <span class="ticker-item">🥉 Copper (Cathode): <span class="ticker-rate">₹748.00/kg</span> <span class="ticker-up">+2.10%</span></span>
+        <span class="ticker-item">🔋 Lithium (Battery Grade): <span class="ticker-rate">₹1,420.00/kg</span> <span class="ticker-down">-0.45%</span></span>
+        <span class="ticker-item">⚡ Palladium: <span class="ticker-rate">₹2,980.00/g</span> <span class="ticker-up">+1.50%</span></span>
+        <span class="ticker-item">🏛️ CPCB EPR Target Compliance Index: <span class="ticker-rate">94.2%</span> <span class="ticker-up">Audit Verified</span></span>
+      </div>
+    </div>
+    <nav class="navbar" role="navigation" aria-label="Main Navigation">
+      <div class="navbar-inner">
+        <a href="../index.html" class="navbar-brand">
+          <div class="logo-icon">♻️</div>
+          EcoLoop
+        </a>
+        <div class="navbar-menu" id="navMenu">
+          <a href="../index.html">Home</a>
+          <a href="collection.html" >Collect</a>
+          
+          <div class="nav-dropdown active">
+            <div class="nav-dropdown-toggle">
+              Enterprise Suite ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="ai-scanner.html" class="nav-dropdown-item active">
+                <span class="item-icon">🤖</span>
+                <div>
+                  <span class="item-title">AI Vision Scanner</span>
+                  <span class="item-desc">Component assay & thermal hazard vision</span>
+                </div>
+              </a>
+              <a href="b2b-exchange.html" class="nav-dropdown-item ">
+                <span class="item-icon">🤝</span>
+                <div>
+                  <span class="item-title">B2B Liquidity Auction</span>
+                  <span class="item-desc">Live scrap trading & LME spot pricing</span>
+                </div>
+              </a>
+              <a href="epr-compliance.html" class="nav-dropdown-item ">
+                <span class="item-icon">🏛️</span>
+                <div>
+                  <span class="item-title">CPCB EPR & ESG Center</span>
+                  <span class="item-desc">Form 2/3/6 & SHA-256 digital seals</span>
+                </div>
+              </a>
+              <a href="recycling.html" class="nav-dropdown-item ">
+                <span class="item-icon">⛏️</span>
+                <div>
+                  <span class="item-title">Urban Mining Calculator</span>
+                  <span class="item-desc">Metallurgical precious metal recovery</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div class="nav-dropdown ">
+            <div class="nav-dropdown-toggle">
+              Operations ▾
+            </div>
+            <div class="nav-dropdown-menu">
+              <a href="tracking.html" class="nav-dropdown-item ">
+                <span class="item-icon">📦</span>
+                <div>
+                  <span class="item-title">Live Tracking</span>
+                  <span class="item-desc">Chain of custody & status updates</span>
+                </div>
+              </a>
+              <a href="segregation.html" class="nav-dropdown-item ">
+                <span class="item-icon">🏷️</span>
+                <div>
+                  <span class="item-title">Smart Segregation</span>
+                  <span class="item-desc">Automated triage & classification</span>
+                </div>
+              </a>
+              <a href="dashboard.html" class="nav-dropdown-item ">
+                <span class="item-icon">📊</span>
+                <div>
+                  <span class="item-title">Operations Dashboard</span>
+                  <span class="item-desc">Throughput, SLA & recovery metrics</span>
+                </div>
+              </a>
+              <a href="analytics.html" class="nav-dropdown-item ">
+                <span class="item-icon">📈</span>
+                <div>
+                  <span class="item-title">LCA & ESG Analytics</span>
+                  <span class="item-desc">Carbon offsets & circular diversion</span>
+                </div>
+              </a>
+              <a href="awareness.html" class="nav-dropdown-item ">
+                <span class="item-icon">💡</span>
+                <div>
+                  <span class="item-title">Citizen Awareness</span>
+                  <span class="item-desc">Hazard guide & disposal directory</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <a href="about.html" >About</a>
+          <a href="admin.html" >Admin</a>
+          <a href="collection.html" class="navbar-cta">♻️ Recycle Now</a>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="../index.html">Home</a>
+        <span class="separator">/</span>
+        <span>AI Vision Neural Scanner</span>
+      </div>
+      <h1>🤖 AI-Powered Neural E-Waste Inspector</h1>
+      <p>Automated visual component recognition, PCB gold density mapping, and lithium battery thermal runaway detection powered by edge neural classification.</p>
+    </div>
+  </div>
+
+  <section class="page-content">
+    <div class="container">
+
+      <!-- Scanner Workspace Grid -->
+      <div style="display:grid; grid-template-columns: 1.2fr 0.8fr; gap:var(--space-2xl); margin-bottom:var(--space-3xl);" id="scannerContainer">
+        
+        <!-- Left: Interactive Vision Viewport -->
+        <div class="card-flat" style="padding:var(--space-xl);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:var(--space-md);">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#22C55E; box-shadow:0 0 8px #22C55E;"></span>
+              <h3 style="font-size:1.15rem; margin:0;">VisionNet Neural Viewport</h3>
+            </div>
+            <span style="font-size:0.75rem; background:var(--gray-100); padding:4px 10px; border-radius:var(--radius-full); font-weight:700; color:var(--text-secondary);">
+              Model: ONNX TensorCore v4.2
+            </span>
+          </div>
+
+          <!-- Viewport -->
+          <div class="scanner-viewport" id="viewport">
+            <div class="scanner-laser" id="laser"></div>
+            
+            <!-- Default idle visual -->
+            <div id="idleScreen" style="text-align:center; color:#94A3B8; padding:var(--space-xl);">
+              <div style="font-size:3.5rem; margin-bottom:var(--space-sm);">📸</div>
+              <h4 style="color:#F1F5F9; font-size:1.1rem; margin-bottom:6px;">Upload Device Photo or Launch Camera</h4>
+              <p style="font-size:0.85rem; max-width:380px; margin:0 auto var(--space-md);">
+                Point at any circuit board, server blade, smartphone, or battery pack to extract metallurgical yield and hazard flags.
+              </p>
+              <div style="display:flex; justify-content:center; gap:10px;">
+                <label for="fileUpload" class="btn btn-primary btn-sm" style="cursor:pointer;">
+                  📁 Select Image File
+                </label>
+                <input type="file" id="fileUpload" accept="image/*" style="display:none;" onchange="handleImageUpload(event)" />
+                <button class="btn btn-secondary btn-sm" onclick="startWebcam()">📹 Live Camera</button>
+              </div>
+            </div>
+
+            <!-- Video or Preview Image -->
+            <img id="scannedImagePreview" style="max-width:100%; max-height:100%; object-fit:contain; display:none;" alt="Scanned Object" />
+            <video id="webcamVideo" autoplay playsinline style="width:100%; height:100%; object-fit:cover; display:none;"></video>
+            
+            <!-- Dynamic Bounding Boxes -->
+            <div class="reticle" id="box1"><span class="reticle-label" id="box1-lbl">Target</span></div>
+            <div class="reticle" id="box2"><span class="reticle-label" id="box2-lbl" style="background:#DC2626;">Hazard</span></div>
+          </div>
+
+          <!-- Preset Samples for instant testing -->
+          <div style="margin-top:var(--space-md); display:flex; align-items:center; flex-wrap:wrap; gap:8px;">
+            <span style="font-size:0.8rem; font-weight:700; color:var(--text-secondary);">Instant Enterprise Test Demos:</span>
+            <span class="sample-chip" onclick="simulateScan('server_pcb')">🖲️ Telecom Server Motherboard</span>
+            <span class="sample-chip" onclick="simulateScan('swollen_battery')">⚠️ Swollen Li-Ion Cell (Hazard)</span>
+            <span class="sample-chip" onclick="simulateScan('laptop_chassis')">💻 Enterprise Laptop Modular</span>
+          </div>
+        </div>
+
+        <!-- Right: Real-Time Neural Inference Card -->
+        <div class="card-flat" style="padding:var(--space-xl); background:var(--gray-50); border:1px solid var(--gray-200); display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <span class="section-badge" id="ai-badge">Ready to Scan</span>
+            <h3 style="font-size:1.3rem; margin:var(--space-xs) 0 var(--space-sm);" id="detected-title">Awaiting Neural Input</h3>
+            <p style="font-size:0.88rem; color:var(--text-secondary); margin-bottom:var(--space-lg);" id="detected-desc">
+              Run a scan to trigger sub-millisecond edge classification, component density recognition, and precious metal assay estimation.
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:var(--space-md); margin-bottom:var(--space-lg);">
+              
+              <!-- Metric 1: Classification Confidence -->
+              <div style="background:white; padding:12px; border-radius:var(--radius-md); border:1px solid var(--border);">
+                <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:700; margin-bottom:4px;">
+                  <span style="color:var(--text-secondary);">Neural Confidence Score</span>
+                  <span style="color:var(--green-700);" id="conf-val">96.8%</span>
+                </div>
+                <div style="height:6px; background:var(--gray-100); border-radius:var(--radius-full); overflow:hidden;">
+                  <div id="conf-bar" style="width:96.8%; height:100%; background:var(--green-600);"></div>
+                </div>
+              </div>
+
+              <!-- Metric 2: Commercial Grade -->
+              <div style="background:white; padding:12px; border-radius:var(--radius-md); border:1px solid var(--border);">
+                <span style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Commercial Smelter Grade</span>
+                <h4 style="color:#0F172A; font-size:0.95rem; margin-top:2px;" id="grade-val">Grade A+ (Industrial Refining Feedstock)</h4>
+              </div>
+
+              <!-- Metric 3: Assayed Secondary Recoveries -->
+              <div style="background:white; padding:12px; border-radius:var(--radius-md); border:1px solid var(--border);">
+                <span style="font-size:0.75rem; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Assayed Precious Recovery Yield</span>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:6px;" id="metal-yields">
+                  <div style="background:var(--gray-50); padding:6px; border-radius:4px; font-size:0.8rem;">
+                    🥇 Gold: <strong id="gold-yield">0.85 g/kg</strong>
+                  </div>
+                  <div style="background:var(--gray-50); padding:6px; border-radius:4px; font-size:0.8rem;">
+                    🥉 Copper: <strong id="copper-yield">0.22 kg/kg</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Metric 4: Hazard Diagnostics -->
+              <div id="hazard-box" style="background:#FEF2F2; border-left:4px solid #EF4444; padding:12px; border-radius:4px; display:none;">
+                <h5 style="color:#991B1B; font-size:0.85rem; margin:0 0 4px;">⚠️ High Hazard Safety Flag</h5>
+                <p style="color:#7F1D1D; font-size:0.8rem; margin:0;" id="hazard-desc">Lithium cell thermal swelling detected (+14mm). Do not compress.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Actions -->
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <button class="btn btn-primary" id="btnAddToLot" onclick="forwardToB2B()" disabled>
+              🤝 Transfer to B2B Auction Lot
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="forwardToEPR()">
+              🏛️ Generate CPCB EPR Form 6 Manifest
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Industrial Architecture Callout -->
+      <div class="card-flat" style="border-left:5px solid var(--blue-500); background:#F8FAFC;">
+        <h4 style="font-size:1.05rem; margin-bottom:6px; color:#0F172A;">⚙️ Enterprise Computer Vision Pipeline</h4>
+        <p style="font-size:0.88rem; line-height:1.6; color:var(--text-secondary); margin:0;">
+          The EcoReclaim neural classification engine utilizes lightweight convolutional models with TensorRT optimization. When an image is received, it segments high-density BGA packages, traces gold-plated edge fingers, and measures physical cell deformation to flag thermal runaway before crushing.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-bottom" style="border-top:1px solid var(--border); padding-top:var(--space-xl); margin-top:var(--space-2xl); text-align:center;">
+      <p>&copy; 2026 EcoReclaim Platform. Pimpri Chinchwad College of Engineering (PCCOE) • Formative Assessment 2 & Enterprise Commercial Suite.</p>
+    </div>
+  </footer>
+
+  <script src="../js/app.js"></script>
+  <script src="../js/ai-scanner.js"></script>
+</body>
+</html>
